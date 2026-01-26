@@ -1,0 +1,12 @@
+{
+	"name": "rawstyle-vscode",
+	"version": "0.0.0",
+	"author": "kh4f <kh4f.dev@gmail.com>",
+	"license": "MIT",
+	"repository": "https://github.com/rawstylecss/rawstyle-vscode",
+	"bugs": "https://github.com/rawstylecss/rawstyle-vscode/issues",
+	"homepage": "https://github.com/rawstylecss/rawstyle-vscode#readme",
+	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
+	"type": "module",
+	"main": "dist/index.js"
+}
