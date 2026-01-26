@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"noEmit": true,
+		"strict": true,
+		"verbatimModuleSyntax": true,
+		"moduleDetection": "force",
+	},
+	"include": ["**/*.ts"]
+}

@@ -8,5 +8,10 @@
 	"homepage": "https://github.com/rawstylecss/rawstyle-vscode#readme",
 	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
 	"type": "module",
-	"main": "dist/index.js"
+	"main": "dist/index.js",
+	"devDependencies": {
+		"@types/node": "^25.0.10",
+		"tsx": "^4.21.0",
+		"typescript": "^5.9.3"
+	}
 }
