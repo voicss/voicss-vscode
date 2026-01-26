@@ -7,11 +7,25 @@
 	"bugs": "https://github.com/rawstylecss/rawstyle-vscode/issues",
 	"homepage": "https://github.com/rawstylecss/rawstyle-vscode#readme",
 	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
+	"pnpm": { "onlyBuiltDependencies": ["esbuild"] },
 	"type": "module",
 	"main": "dist/index.js",
+	"scripts": {
+		"lint": "eslint"
+	},
 	"devDependencies": {
+		"@eslint-react/eslint-plugin": "^2.7.4",
+		"@eslint/js": "^9.39.2",
+		"@stylistic/eslint-plugin": "^5.7.1",
+		"@types/eslint-plugin-jsx-a11y": "^6.10.1",
 		"@types/node": "^25.0.10",
+		"eslint": "^9.39.2",
+		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^7.0.1",
+		"jiti": "^2.6.1",
 		"tsx": "^4.21.0",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.54.0"
 	}
 }
