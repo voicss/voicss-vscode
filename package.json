@@ -22,6 +22,7 @@
 		"@types/node": "^25.0.10",
 		"@types/react": "^19.2.9",
 		"@types/react-dom": "^19.2.3",
+		"@types/vscode": "^1.108.1",
 		"eslint": "^9.39.2",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"eslint-plugin-react": "^7.37.5",
@@ -32,6 +33,8 @@
 		"relion": "^0.37.0",
 		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.54.0"
+		"typescript-eslint": "^8.54.0",
+		"vscode-css-languageservice": "^6.3.9",
+		"vscode-languageserver-textdocument": "^1.0.12"
 	}
 }
