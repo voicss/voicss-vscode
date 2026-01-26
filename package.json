@@ -11,6 +11,9 @@
 	"type": "module",
 	"main": "dist/index.js",
 	"scripts": {
+		"build": "tsdown",
+		"build:watch": "tsdown --watch",
+		"build:prod": "tsdown --prod",
 		"lint": "eslint",
 		"release": "relion"
 	},
@@ -31,6 +34,7 @@
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
 		"relion": "^0.37.0",
+		"tsdown": "^0.20.1",
 		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.54.0",
