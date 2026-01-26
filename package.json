@@ -11,7 +11,8 @@
 	"type": "module",
 	"main": "dist/index.js",
 	"scripts": {
-		"lint": "eslint"
+		"lint": "eslint",
+		"release": "relion"
 	},
 	"devDependencies": {
 		"@eslint-react/eslint-plugin": "^2.7.4",
@@ -24,6 +25,7 @@
 		"eslint-plugin-react": "^7.37.5",
 		"eslint-plugin-react-hooks": "^7.0.1",
 		"jiti": "^2.6.1",
+		"relion": "^0.37.0",
 		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.54.0"

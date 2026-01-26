@@ -38,6 +38,9 @@ importers:
       jiti:
         specifier: ^2.6.1
         version: 2.6.1
+      relion:
+        specifier: ^0.37.0
+        version: 0.37.0
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
@@ -1212,6 +1215,10 @@ packages:
   regexp.prototype.flags@1.5.4:
     resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
+
+  relion@0.37.0:
+    resolution: {integrity: sha512-oP9dXE+4s07qhrfAT6c8FQ33F9c7t5QGMufSvfa9heRz6H+b3kwQZVFuteGiDKDqqZvGSPPTvBU2+Aw2tHXoMg==}
+    hasBin: true
 
   resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
@@ -2878,6 +2885,10 @@ snapshots:
       get-proto: 1.0.1
       gopd: 1.2.0
       set-function-name: 2.0.2
+
+  relion@0.37.0:
+    dependencies:
+      semver: 7.7.3
 
   resolve-from@4.0.0: {}
 
