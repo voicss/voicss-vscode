@@ -9,9 +9,19 @@
 	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
 	"pnpm": { "onlyBuiltDependencies": ["esbuild"] },
 	"engines": { "vscode": ">=1.109.x" },
-	"activationEvents": ["onLanguage:typescriptreact"],
 	"type": "module",
 	"main": "dist/index.js",
+	"activationEvents": ["onLanguage:typescriptreact"],
+	"contributes": {
+		"grammars": [
+			{
+				"scopeName": "rawstyle.css.injection",
+				"path": "syntaxes/injection.json",
+				"injectTo": ["source.tsx"],
+				"embeddedLanguages": {"meta.embedded.block.css": "css"}
+			}
+		]
+	},
 	"scripts": {
 		"build": "tsdown",
 		"build:watch": "tsdown --watch",
