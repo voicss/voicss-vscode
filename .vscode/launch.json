@@ -4,5 +4,6 @@
 		"name": "Debug Extension",
 		"type": "extensionHost",
 		"request": "launch",
+		"preLaunchTask": "pnpm: build"
 	}]
 }
