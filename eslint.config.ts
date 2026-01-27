@@ -5,7 +5,6 @@ import eslintReact from '@eslint-react/eslint-plugin'
 import reactPlugin from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
-import css from '@eslint/css'
 import stylistic from '@stylistic/eslint-plugin'
 
 export default defineConfig([
@@ -36,13 +35,6 @@ export default defineConfig([
 			reactHooks.configs.flat.recommended,
 			eslintReact.configs['recommended-type-checked'],
 		],
-	},
-	{
-		name: 'CSS Rules',
-		files: ['**/*.css'],
-		language: 'css/css',
-		extends: [css.configs.recommended],
-		rules: { 'css/no-invalid-properties': ['error', { allowUnknownVariables: true }] },
 	},
 	{
 		name: 'Stylistic Rules',
