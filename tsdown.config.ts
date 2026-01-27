@@ -6,4 +6,5 @@ export default {
 	minify: isProd,
 	sourcemap: isProd ? false : 'inline',
 	fixedExtension: false,
+	external: 'vscode',
 } satisfies UserConfig

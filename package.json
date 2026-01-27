@@ -8,6 +8,8 @@
 	"homepage": "https://github.com/rawstylecss/rawstyle-vscode#readme",
 	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
 	"pnpm": { "onlyBuiltDependencies": ["esbuild"] },
+	"engines": { "vscode": ">=1.109.x" },
+	"activationEvents": ["onLanguage:typescriptreact"],
 	"type": "module",
 	"main": "dist/index.js",
 	"scripts": {
