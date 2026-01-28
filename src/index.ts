@@ -113,8 +113,6 @@ export function activate(context: ExtensionContext) {
 		const cssPos = virtualDoc.positionAt(offset - tpl.cssStart)
 
 		const completions = cssLs.doComplete(virtualDoc, cssPos, stylesheet)
-		console.log(completions.items.length)
-		console.log(completions.itemDefaults)
 		return completions.items.map(item => {
 			if (item.kind) item.kind -= 1
 			const completion = new CompletionItem(item.label, item.kind)
