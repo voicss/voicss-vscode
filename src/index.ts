@@ -1,4 +1,4 @@
-import { window, languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation } from 'vscode'
+import { window, languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import { findCssTemplates } from '@/utils'
@@ -102,5 +102,35 @@ export function activate(context: ExtensionContext) {
 		},
 	})
 
-	context.subscriptions.push(hoverProvider, foldingProvider, colorProvider)
+	const completionProvider = languages.registerCompletionItemProvider(docSelectors, { provideCompletionItems(doc, pos) {
+		const text = doc.getText()
+		const offset = doc.offsetAt(pos)
+		const tpl = findCssTemplates(text).find(t => offset >= t.cssStart && offset < t.cssEnd)
+		if (!tpl) return null
+
+		const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
+		const stylesheet = cssLs.parseStylesheet(virtualDoc)
+		const cssPos = virtualDoc.positionAt(offset - tpl.cssStart)
+
+		const completions = cssLs.doComplete(virtualDoc, cssPos, stylesheet)
+		console.log(completions.items.length)
+		console.log(completions.itemDefaults)
+		return completions.items.map(item => {
+			if (item.kind) item.kind -= 1
+			const completion = new CompletionItem(item.label, item.kind)
+
+			const docValue = typeof item.documentation === 'string' ? item.documentation : item.documentation?.value
+			if (docValue) completion.documentation = new MarkdownString(docValue)
+
+			if (item.textEdit?.newText) completion.insertText = new SnippetString(item.textEdit.newText)
+			completion.detail = item.detail
+			completion.tags = item.tags
+			completion.sortText = item.sortText
+			completion.command = item.command
+
+			return completion
+		})
+	} }, ':', ';', ' ', '-')
+
+	context.subscriptions.push(hoverProvider, foldingProvider, colorProvider, completionProvider)
 }
