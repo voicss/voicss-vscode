@@ -40,7 +40,7 @@ export function activate(context: ExtensionContext) {
 		const text = doc.getText()
 		const result: FoldingRange[] = []
 
-		for (const tpl of findAllCssTemplates(text)) {
+		for (const tpl of findCssTemplates(text)) {
 			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
 			const ranges = cssLs.getFoldingRanges(virtualDoc)
 			if (!ranges.length) continue
@@ -87,7 +87,7 @@ const findCssTemplate = (text: string, offset: number): CssTemplate | null => {
 	return null
 }
 
-const findAllCssTemplates = (text: string): CssTemplate[] => {
+const findCssTemplates = (text: string): CssTemplate[] => {
 	const regex = /\bg?css`(.*?)`/gs
 	const result: CssTemplate[] = []
 
