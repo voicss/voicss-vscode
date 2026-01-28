@@ -1,7 +1,7 @@
-import { window, languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind } from 'vscode'
+import { window, languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { TextDocument } from 'vscode-languageserver-textdocument'
-import type { DocumentSelector, ExtensionContext, Range as RangeI } from 'vscode'
+import type { DocumentSelector, ExtensionContext, Range as RangeI, ColorInformation as ColorInformationI } from 'vscode'
 import { findCssTemplates } from '@/utils'
 
 const cssLs = getCSSLanguageService()
@@ -59,5 +59,48 @@ export function activate(context: ExtensionContext) {
 		return result
 	} })
 
-	context.subscriptions.push(hoverProvider, foldingProvider)
+	const colorProvider = languages.registerColorProvider(docSelectors, {
+		provideDocumentColors(doc) {
+			const text = doc.getText()
+			const result: ColorInformationI[] = []
+
+			for (const tpl of findCssTemplates(text)) {
+				const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
+				const stylesheet = cssLs.parseStylesheet(virtualDoc)
+				const colors = cssLs.findDocumentColors(virtualDoc, stylesheet)
+
+				for (const c of colors) {
+					const startOffset = tpl.cssStart + virtualDoc.offsetAt(c.range.start)
+					const endOffset = tpl.cssStart + virtualDoc.offsetAt(c.range.end)
+
+					result.push(new ColorInformation(
+						new Range(doc.positionAt(startOffset), doc.positionAt(endOffset)),
+						new Color(c.color.red, c.color.green, c.color.blue, c.color.alpha),
+					))
+				}
+			}
+
+			return result
+		},
+
+		provideColorPresentations(color, context) {
+			const doc = context.document
+			const text = doc.getText()
+			const offset = doc.offsetAt(context.range.start)
+			const tpl = findCssTemplates(text).find(t => offset >= t.cssStart && offset < t.cssEnd)
+			if (!tpl) return
+
+			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
+			const stylesheet = cssLs.parseStylesheet(virtualDoc)
+			const cssRange = {
+				start: virtualDoc.positionAt(offset - tpl.cssStart),
+				end: virtualDoc.positionAt(offset - tpl.cssStart + doc.offsetAt(context.range.end) - offset),
+			}
+			const colorInfo = { red: color.red, green: color.green, blue: color.blue, alpha: color.alpha }
+			const presentations = cssLs.getColorPresentations(virtualDoc, stylesheet, colorInfo, cssRange)
+			return presentations.map(p => new ColorPresentation(p.label))
+		},
+	})
+
+	context.subscriptions.push(hoverProvider, foldingProvider, colorProvider)
 }
