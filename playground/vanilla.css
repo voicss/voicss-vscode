@@ -10,6 +10,7 @@
 		letter-spacing: -1rem;
 
 		& span {
+			background-color: ivory;
 			color: red;
 			text-transform: uppercase;
 		}

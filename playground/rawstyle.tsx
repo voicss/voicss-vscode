@@ -8,14 +8,16 @@ void css`
 	text-transform: uppercase;
 	letter-spacing: -1rem;
 	line-height: 0.7;
-	
+
 	.link {
 		font-family: system-ui;
 		font-size: 1.2rem;
 
 		& > a {
 			color: tomato;
-				&:hover, &:focus {
+			font-size: 1.2rem;
+
+			&:hover, &:focus {
 				color: ivory;
 				background-color: tomato;
 			}
@@ -34,6 +36,7 @@ void gcss`
 		height: 100vh;
 		overflow: hidden;
 		margin: 0;
+		cursor: crosshair;
 		
 		&.dark {
 			--background: #303030;
