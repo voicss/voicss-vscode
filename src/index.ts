@@ -95,12 +95,14 @@ const findCssTemplates = (text: string): CssTemplate[] => {
 	while ((match = regex.exec(text))) {
 		let css = match[1]
 		let start = text.indexOf('`', match.index) + 1
-		const end = start + css.length
+		let end = start + css.length
 
 		if (!match[0].startsWith('g')) {
 			const prefix = '.class { '
-			css = `${prefix}${css} }`
+			const suffix = ' }'
+			css = `${prefix}${css}${suffix}`
 			start -= prefix.length
+			end += suffix.length
 		}
 
 		result.push({ css, start, end })
