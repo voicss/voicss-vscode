@@ -15,6 +15,11 @@
 	"contributes": {
 		"grammars": [
 			{
+				"language": "css",
+				"scopeName": "source.css",
+				"path": "syntaxes/css.tmLanguage.json"
+			},
+			{
 				"scopeName": "rawstyle.css.injection",
 				"path": "syntaxes/injection.json",
 				"injectTo": ["source.tsx"],
