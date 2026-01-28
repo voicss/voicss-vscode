@@ -15,7 +15,7 @@ export function activate(context: ExtensionContext) {
 		const template = findCssTemplate(text, offset)
 		if (!template) return null
 
-		const { css, cssStart } = template
+		const { css, start: cssStart } = template
 		const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, css)
 		const stylesheet = cssLs.parseStylesheet(virtualDoc)
 		const relPos = virtualDoc.positionAt(offset - cssStart)
@@ -45,8 +45,8 @@ export function activate(context: ExtensionContext) {
 			if (!ranges.length) continue
 
 			for (const r of ranges) {
-				const startOffset = tpl.cssStart + virtualDoc.offsetAt({ line: r.startLine, character: 0 })
-				const endOffset = tpl.cssStart + virtualDoc.offsetAt({ line: r.endLine, character: 0 })
+				const startOffset = tpl.start + virtualDoc.offsetAt({ line: r.startLine, character: 0 })
+				const endOffset = tpl.start + virtualDoc.offsetAt({ line: r.endLine, character: 0 })
 
 				const start = doc.positionAt(startOffset)
 				const end = doc.positionAt(endOffset)
@@ -68,7 +68,8 @@ export function activate(context: ExtensionContext) {
 
 interface CssTemplate {
 	css: string
-	cssStart: number
+	start: number
+	end: number
 }
 
 const findCssTemplate = (text: string, offset: number): CssTemplate | null => {
@@ -77,15 +78,15 @@ const findCssTemplate = (text: string, offset: number): CssTemplate | null => {
 	let match: RegExpExecArray | null
 	while ((match = regex.exec(text))) {
 		let css = match[1]
-		let cssStart = text.indexOf('`', match.index) + 1
-		const cssEnd = cssStart + css.length
-		if (offset < cssStart || offset >= cssEnd) continue
+		let start = text.indexOf('`', match.index) + 1
+		const end = start + css.length
+		if (offset < start || offset >= end) continue
 		if (!match[0].startsWith('g')) {
 			const prefix = '.class { '
 			css = `${prefix}${css} }`
-			cssStart -= prefix.length
+			start -= prefix.length
 		}
-		return { css, cssStart }
+		return { css, start, end }
 	}
 
 	return null
@@ -98,15 +99,16 @@ const findAllCssTemplates = (text: string): CssTemplate[] => {
 	let match: RegExpExecArray | null
 	while ((match = regex.exec(text))) {
 		let css = match[1]
-		let cssStart = text.indexOf('`', match.index) + 1
+		let start = text.indexOf('`', match.index) + 1
+		const end = start + css.length
 
 		if (!match[0].startsWith('g')) {
 			const prefix = '.class { '
 			css = `${prefix}${css} }`
-			cssStart -= prefix.length
+			start -= prefix.length
 		}
 
-		result.push({ css, cssStart })
+		result.push({ css, start, end })
 	}
 
 	return result
