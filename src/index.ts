@@ -30,7 +30,6 @@ export function activate(context: ExtensionContext) {
 		if (lsHover.range) {
 			const rangeStartOffset = cssStart + virtualDoc.offsetAt(lsHover.range.start)
 			const rangeEndOffset = cssStart + virtualDoc.offsetAt(lsHover.range.end)
-			console.log(rangeStartOffset, rangeEndOffset)
 			range = new Range(doc.positionAt(rangeStartOffset), doc.positionAt(rangeEndOffset))
 		}
 		return new Hover(markdownContents, range)
