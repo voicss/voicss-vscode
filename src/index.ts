@@ -2,7 +2,7 @@ import { window, languages, MarkdownString, Range, Hover, FoldingRange, FoldingR
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import type { DocumentSelector, ExtensionContext, Range as RangeI } from 'vscode'
-import type { CssTemplate } from '@/types'
+import { findCssTemplates } from '@/utils'
 
 const cssLs = getCSSLanguageService()
 const docSelectors: DocumentSelector = [{ language: 'typescript' }, { language: 'typescriptreact' }]
@@ -60,30 +60,4 @@ export function activate(context: ExtensionContext) {
 	} })
 
 	context.subscriptions.push(hoverProvider, foldingProvider)
-}
-
-const findCssTemplates = (text: string): CssTemplate[] => {
-	const regex = /\bg?css`(.*?)`/gs
-	const result: CssTemplate[] = []
-
-	let match: RegExpExecArray | null
-	while ((match = regex.exec(text))) {
-		let css = match[1]
-		const tagStart = text.indexOf('`', match.index) + 1
-		const tagEnd = tagStart + css.length
-		let cssStart = tagStart
-		let cssEnd = tagEnd
-
-		if (!match[0].startsWith('g')) {
-			const prefix = '.class { '
-			const suffix = ' }'
-			css = `${prefix}${css}${suffix}`
-			cssStart -= prefix.length
-			cssEnd += suffix.length
-		}
-
-		result.push({ css, tagStart, tagEnd, cssStart, cssEnd })
-	}
-
-	return result
 }
