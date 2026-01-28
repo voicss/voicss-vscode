@@ -13,10 +13,10 @@ export function activate(context: ExtensionContext) {
 	const hoverProvider = languages.registerHoverProvider(docSelectors, { provideHover(doc, pos) {
 		const text = doc.getText()
 		const offset = doc.offsetAt(pos)
-		const template = findCssTemplate(text, offset)
+		const template = findCssTemplates(text).find(t => offset >= t.tagStart && offset < t.tagEnd)
 		if (!template) return null
 
-		const { css, start: cssStart } = template
+		const { css, cssStart } = template
 		const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, css)
 		const stylesheet = cssLs.parseStylesheet(virtualDoc)
 		const relPos = virtualDoc.positionAt(offset - cssStart)
@@ -46,8 +46,8 @@ export function activate(context: ExtensionContext) {
 			if (!ranges.length) continue
 
 			for (const r of ranges) {
-				const startOffset = tpl.start + virtualDoc.offsetAt({ line: r.startLine, character: 0 })
-				const endOffset = tpl.start + virtualDoc.offsetAt({ line: r.endLine, character: 0 })
+				const startOffset = tpl.tagStart + virtualDoc.offsetAt({ line: r.startLine, character: 0 })
+				const endOffset = tpl.tagStart + virtualDoc.offsetAt({ line: r.endLine, character: 0 })
 
 				const start = doc.positionAt(startOffset)
 				const end = doc.positionAt(endOffset)
@@ -67,26 +67,6 @@ export function activate(context: ExtensionContext) {
 	context.subscriptions.push(hoverProvider, foldingProvider)
 }
 
-const findCssTemplate = (text: string, offset: number): CssTemplate | null => {
-	const regex = /\bg?css`(.*?)`/gs
-
-	let match: RegExpExecArray | null
-	while ((match = regex.exec(text))) {
-		let css = match[1]
-		let start = text.indexOf('`', match.index) + 1
-		const end = start + css.length
-		if (offset < start || offset >= end) continue
-		if (!match[0].startsWith('g')) {
-			const prefix = '.class { '
-			css = `${prefix}${css} }`
-			start -= prefix.length
-		}
-		return { css, start, end }
-	}
-
-	return null
-}
-
 const findCssTemplates = (text: string): CssTemplate[] => {
 	const regex = /\bg?css`(.*?)`/gs
 	const result: CssTemplate[] = []
@@ -94,18 +74,20 @@ const findCssTemplates = (text: string): CssTemplate[] => {
 	let match: RegExpExecArray | null
 	while ((match = regex.exec(text))) {
 		let css = match[1]
-		let start = text.indexOf('`', match.index) + 1
-		let end = start + css.length
+		const tagStart = text.indexOf('`', match.index) + 1
+		const tagEnd = tagStart + css.length
+		let cssStart = tagStart
+		let cssEnd = tagEnd
 
 		if (!match[0].startsWith('g')) {
 			const prefix = '.class { '
 			const suffix = ' }'
 			css = `${prefix}${css}${suffix}`
-			start -= prefix.length
-			end += suffix.length
+			cssStart -= prefix.length
+			cssEnd += suffix.length
 		}
 
-		result.push({ css, start, end })
+		result.push({ css, tagStart, tagEnd, cssStart, cssEnd })
 	}
 
 	return result

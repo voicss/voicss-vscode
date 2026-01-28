@@ -1,5 +1,7 @@
 export interface CssTemplate {
 	css: string
-	start: number
-	end: number
+	tagStart: number
+	tagEnd: number
+	cssStart: number
+	cssEnd: number
 }
