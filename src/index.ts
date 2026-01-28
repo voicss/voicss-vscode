@@ -2,6 +2,7 @@ import { window, languages, MarkdownString, Range, Hover, FoldingRange, FoldingR
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import type { DocumentSelector, ExtensionContext, Range as RangeI } from 'vscode'
+import type { CssTemplate } from '@/types'
 
 const cssLs = getCSSLanguageService()
 const docSelectors: DocumentSelector = [{ language: 'typescript' }, { language: 'typescriptreact' }]
@@ -64,12 +65,6 @@ export function activate(context: ExtensionContext) {
 	} })
 
 	context.subscriptions.push(hoverProvider, foldingProvider)
-}
-
-interface CssTemplate {
-	css: string
-	start: number
-	end: number
 }
 
 const findCssTemplate = (text: string, offset: number): CssTemplate | null => {
