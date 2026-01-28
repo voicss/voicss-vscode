@@ -11,7 +11,7 @@
 	"engines": { "vscode": ">=1.109.x" },
 	"type": "module",
 	"main": "dist/index.js",
-	"activationEvents": ["onLanguage:typescriptreact"],
+	"activationEvents": ["onLanguage:typescriptreact", "onLanguage:typescript"],
 	"contributes": {
 		"grammars": [
 			{
@@ -22,7 +22,7 @@
 			{
 				"scopeName": "rawstyle.css.injection",
 				"path": "syntaxes/injection.json",
-				"injectTo": ["source.tsx"],
+				"injectTo": ["source.tsx", "source.ts"],
 				"embeddedLanguages": {"meta.embedded.block.css": "css"}
 			}
 		]
