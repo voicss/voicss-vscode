@@ -53,11 +53,7 @@ export function activate(context: ExtensionContext) {
 				const end = doc.positionAt(endOffset)
 				if (start.line >= end.line) continue
 
-				result.push({
-					start: start.line,
-					end: end.line,
-					kind: FoldingRangeKind.Region,
-				})
+				result.push({ start: start.line, end: end.line, kind: FoldingRangeKind.Region })
 			}
 		}
 
