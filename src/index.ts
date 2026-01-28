@@ -45,8 +45,8 @@ export function activate(context: ExtensionContext) {
 			if (!ranges.length) continue
 
 			for (const r of ranges) {
-				const startOffset = tpl.tagStart + virtualDoc.offsetAt({ line: r.startLine, character: 0 })
-				const endOffset = tpl.tagStart + virtualDoc.offsetAt({ line: r.endLine, character: 0 })
+				const startOffset = tpl.cssStart + virtualDoc.offsetAt({ line: r.startLine, character: 0 })
+				const endOffset = tpl.cssStart + virtualDoc.offsetAt({ line: r.endLine, character: 0 })
 
 				const start = doc.positionAt(startOffset)
 				const end = doc.positionAt(endOffset)
