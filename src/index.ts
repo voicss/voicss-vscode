@@ -1,4 +1,4 @@
-import { window, languages, MarkdownString, Range, Hover } from 'vscode'
+import { window, languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import type { DocumentSelector, ExtensionContext, Range as RangeI } from 'vscode'
@@ -35,10 +35,43 @@ export function activate(context: ExtensionContext) {
 		return new Hover(markdownContents, range)
 	} })
 
-	context.subscriptions.push(hoverProvider)
+	const foldingProvider = languages.registerFoldingRangeProvider(docSelectors, { provideFoldingRanges(doc) {
+		const text = doc.getText()
+		const result: FoldingRange[] = []
+
+		for (const tpl of findAllCssTemplates(text)) {
+			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
+			const ranges = cssLs.getFoldingRanges(virtualDoc)
+			if (!ranges.length) continue
+
+			for (const r of ranges) {
+				const startOffset = tpl.cssStart + virtualDoc.offsetAt({ line: r.startLine, character: 0 })
+				const endOffset = tpl.cssStart + virtualDoc.offsetAt({ line: r.endLine, character: 0 })
+
+				const start = doc.positionAt(startOffset)
+				const end = doc.positionAt(endOffset)
+				if (start.line >= end.line) continue
+
+				result.push({
+					start: start.line,
+					end: end.line,
+					kind: FoldingRangeKind.Region,
+				})
+			}
+		}
+
+		return result
+	} })
+
+	context.subscriptions.push(hoverProvider, foldingProvider)
 }
 
-const findCssTemplate = (text: string, offset: number): { css: string, cssStart: number } | null => {
+interface CssTemplate {
+	css: string
+	cssStart: number
+}
+
+const findCssTemplate = (text: string, offset: number): CssTemplate | null => {
 	const regex = /\bg?css`(.*?)`/gs
 
 	let match: RegExpExecArray | null
@@ -56,4 +89,25 @@ const findCssTemplate = (text: string, offset: number): { css: string, cssStart:
 	}
 
 	return null
+}
+
+const findAllCssTemplates = (text: string): CssTemplate[] => {
+	const regex = /\bg?css`(.*?)`/gs
+	const result: CssTemplate[] = []
+
+	let match: RegExpExecArray | null
+	while ((match = regex.exec(text))) {
+		let css = match[1]
+		let cssStart = text.indexOf('`', match.index) + 1
+
+		if (!match[0].startsWith('g')) {
+			const prefix = '.class { '
+			css = `${prefix}${css} }`
+			cssStart -= prefix.length
+		}
+
+		result.push({ css, cssStart })
+	}
+
+	return result
 }
