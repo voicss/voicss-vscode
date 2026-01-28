@@ -1,8 +1,8 @@
 import { window, languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { TextDocument } from 'vscode-languageserver-textdocument'
-import type { DocumentSelector, ExtensionContext, Range as RangeI, ColorInformation as ColorInformationI } from 'vscode'
 import { findCssTemplates } from '@/utils'
+import type { DocumentSelector, ExtensionContext, Range as RangeI, ColorInformation as ColorInformationI } from 'vscode'
 
 const cssLs = getCSSLanguageService()
 const docSelectors: DocumentSelector = [{ language: 'typescript' }, { language: 'typescriptreact' }]
