@@ -2,6 +2,7 @@
 	"name": "rawstyle-vscode",
 	"version": "0.0.0",
 	"author": "kh4f <kh4f.dev@gmail.com>",
+	"publisher": "rawstyle",
 	"license": "MIT",
 	"repository": "https://github.com/rawstylecss/rawstyle-vscode",
 	"bugs": "https://github.com/rawstylecss/rawstyle-vscode/issues",
