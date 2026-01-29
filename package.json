@@ -14,7 +14,12 @@
 	"files": ["package.json", "README.md", "LICENSE", "CHANGELOG.md", "dist", "syntaxes"],
 	"type": "module",
 	"main": "dist/index.js",
-	"activationEvents": ["onLanguage:typescriptreact", "onLanguage:typescript"],
+	"activationEvents": [
+		"onLanguage:typescriptreact",
+		"onLanguage:typescript",
+		"onLanguage:javascriptreact",
+		"onLanguage:javascript"
+	],
 	"contributes": {
 		"grammars": [
 			{
@@ -25,7 +30,7 @@
 			{
 				"scopeName": "rawstyle.css.injection",
 				"path": "syntaxes/injection.json",
-				"injectTo": ["source.tsx", "source.ts"],
+				"injectTo": ["source.tsx", "source.ts", "source.jsx", "source.js"],
 				"embeddedLanguages": {"meta.embedded.block.css": "css"}
 			}
 		]
