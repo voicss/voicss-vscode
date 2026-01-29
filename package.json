@@ -35,7 +35,8 @@
 		"build:watch": "tsdown --watch",
 		"build:prod": "tsdown --prod",
 		"lint": "eslint",
-		"release": "relion"
+		"release": "relion",
+		"package": "vsce package --no-dependencies"
 	},
 	"dependencies": {
 		"vscode-css-languageservice": "^6.3.9",
