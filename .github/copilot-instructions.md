@@ -1,3 +1,3 @@
 # Project Overview
 
-A VS Code extension that enables CSS syntax highlighting inside Rawstyle tagged template literals in TSX files.
+A VS Code extension that brings native CSS language features (syntax highlighting, autocompletion, hovers, color previews, etc.) to Rawstyle CSS templates in JS/TS files.
