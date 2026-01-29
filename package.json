@@ -10,6 +10,7 @@
 	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
 	"pnpm": { "onlyBuiltDependencies": ["esbuild", "@vscode/vsce-sign", "keytar"] },
 	"engines": { "vscode": ">=1.109.x" },
+	"files": ["package.json", "README.md", "LICENSE", "CHANGELOG.md", "dist", "syntaxes"],
 	"type": "module",
 	"main": "dist/index.js",
 	"activationEvents": ["onLanguage:typescriptreact", "onLanguage:typescript"],
