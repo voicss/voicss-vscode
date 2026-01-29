@@ -1,4 +1,4 @@
-import { window, languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString } from 'vscode'
+import { languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import { findCssTemplates } from '@/utils'
@@ -8,8 +8,6 @@ const cssLs = getCSSLanguageService()
 const docSelectors: DocumentSelector = [{ language: 'typescript' }, { language: 'typescriptreact' }]
 
 export function activate(context: ExtensionContext) {
-	window.showInformationMessage('Rawstyle VS Code extension activated')
-
 	const hoverProvider = languages.registerHoverProvider(docSelectors, { provideHover(doc, pos) {
 		const text = doc.getText()
 		const offset = doc.offsetAt(pos)
