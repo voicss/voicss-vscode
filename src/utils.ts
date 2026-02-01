@@ -3,9 +3,7 @@ import type { CssTemplate } from '@/types'
 
 export const findCssTemplates = (text: string): CssTemplate[] => {
 	const result: CssTemplate[] = []
-
-	let match: RegExpExecArray | null
-	while ((match = TEMPLATE_PATTERN.exec(text))) {
+	for (const match of text.matchAll(TEMPLATE_PATTERN)) {
 		let css = match[1]
 		const tagStart = text.indexOf('`', match.index) + 1
 		const tagEnd = tagStart + css.length
