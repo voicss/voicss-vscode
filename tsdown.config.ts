@@ -8,6 +8,6 @@ export default {
 	sourcemap: isProd ? false : 'inline',
 	fixedExtension: false,
 	external: ['vscode'],
-	noExternal: ['vscode-css-languageservice', 'vscode-languageserver-textdocument'],
+	noExternal: ['rawstyle', 'vscode-css-languageservice', 'vscode-languageserver-textdocument'],
 	inlineOnly: false,
 } satisfies UserConfig
