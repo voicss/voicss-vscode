@@ -14,7 +14,7 @@
     - <description #1>. [🡥](<repoURL>/commit/<hash>)
     - <description #2>. [🡥](<repoURL>/commit/<hash>)
 
-##### &emsp;&emsp; [_Full Changelog_](<repoURL>/compare/<prevTag>...<tag>) &ensp;•&ensp; _<date>_
+##### &emsp;&emsp; [Full Changelog](<repoURL>/compare/<prevTag>...<tag>) &ensp;•&ensp; <date>
 ```
 
 ### Brief
