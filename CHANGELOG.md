@@ -1,6 +1,17 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.2.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.1.1...v0.2.0)
+
+### &emsp; 🎁 Features
+- **CSS validation in templates**: Rawstyle templates now provide in-editor CSS diagnostics, surfacing errors and warnings directly in JS/TS(X) files. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/00c31cf)
+
+### &emsp; 🩹 Fixes
+- **Provider support for JS(X)**: Rawstyle language features now work in JavaScript and JSX files, not just TS(X). [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/9ad9149)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.1.1...v0.2.0) &ensp;•&ensp; Feb 3, 2026
+
+
 ## &ensp; [` 📦 v0.1.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.1.0...v0.1.1)
 
 ### &emsp; 🩹 Fixes
