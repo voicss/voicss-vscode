@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.1.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.1.0...v0.1.1)
+
+### &emsp; 🩹 Fixes
+- **Restricted injection scope**: Rawstyle syntax highlighting no longer leaks into regular strings or comments to prevent incorrect coloring. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/be21d57)
+
+##### &emsp;&emsp; [_Full Changelog_](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.1.0...v0.1.1) &ensp;•&ensp; _Feb 3, 2026_
+
+
 ## &ensp; [` 📦 v0.1.0  `](https://github.com/rawstylecss/rawstyle-vscode/commits/v0.1.0)
 
 ### &emsp; 🎁 Features
