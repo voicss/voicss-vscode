@@ -1,8 +1,8 @@
 {
 	"scopeName": "rawstyle.css.injection",
-	"injectionSelector": "L:source",
+	"injectionSelector": "L:source -string -comment",
 	"patterns": [{
-		"begin": "g?css`",
+		"begin": "\\bg?css`",
 		"end": "`",
 		"patterns": [{ "include": "source.css#rule-list-innards" }]
 	}]
