@@ -5,7 +5,10 @@ import { findCssTemplates } from '@/utils'
 import type { DocumentSelector, ExtensionContext, Range as RangeI, ColorInformation as ColorInformationI } from 'vscode'
 
 const cssLs = getCSSLanguageService()
-const docSelectors: DocumentSelector = [{ language: 'typescript' }, { language: 'typescriptreact' }]
+const docSelectors: DocumentSelector = [
+	{ language: 'typescriptreact' }, { language: 'typescript' },
+	{ language: 'javascriptreact' }, { language: 'javascript' },
+]
 
 export function activate(context: ExtensionContext) {
 	const hoverProvider = languages.registerHoverProvider(docSelectors, { provideHover(doc, pos) {
