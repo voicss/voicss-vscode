@@ -1,14 +1,11 @@
-import { languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString } from 'vscode'
+import { languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString, Diagnostic, DiagnosticSeverity, workspace } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import { findCssTemplates } from '@/utils'
-import type { DocumentSelector, ExtensionContext, Range as RangeI, ColorInformation as ColorInformationI } from 'vscode'
+import type { ExtensionContext, Range as RangeI, ColorInformation as ColorInformationI, TextDocument as TextDocumentI } from 'vscode'
 
 const cssLs = getCSSLanguageService()
-const docSelectors: DocumentSelector = [
-	{ language: 'typescriptreact' }, { language: 'typescript' },
-	{ language: 'javascriptreact' }, { language: 'javascript' },
-]
+const docSelectors = ['typescriptreact', 'typescript', 'javascriptreact', 'javascript']
 
 export function activate(context: ExtensionContext) {
 	const hoverProvider = languages.registerHoverProvider(docSelectors, { provideHover(doc, pos) {
@@ -131,5 +128,39 @@ export function activate(context: ExtensionContext) {
 		})
 	} }, ':', ';', ' ', '-')
 
-	context.subscriptions.push(hoverProvider, foldingProvider, colorProvider, completionProvider)
+	const diagnosticCollection = languages.createDiagnosticCollection('rawstyle')
+
+	const validateCssTemplates = (doc: TextDocumentI) => {
+		if (!docSelectors.includes(doc.languageId)) return
+
+		const text = doc.getText()
+		const diagnostics: Diagnostic[] = []
+
+		for (const tpl of findCssTemplates(text)) {
+			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
+			const stylesheet = cssLs.parseStylesheet(virtualDoc)
+			const errors = cssLs.doValidation(virtualDoc, stylesheet)
+
+			errors.forEach(error => {
+				const startPos = doc.positionAt(tpl.cssStart + virtualDoc.offsetAt(error.range.start))
+				const endPos = doc.positionAt(tpl.cssStart + virtualDoc.offsetAt(error.range.end))
+				const diagnostic = new Diagnostic(
+					new Range(startPos, endPos),
+					error.message,
+					error.severity === 1 ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning,
+				)
+				diagnostic.source = `${error.source}(${error.code})`
+				diagnostics.push(diagnostic)
+			})
+		}
+
+		diagnosticCollection.set(doc.uri, diagnostics)
+	}
+
+	workspace.textDocuments.forEach(doc => validateCssTemplates(doc))
+	workspace.onDidOpenTextDocument(doc => validateCssTemplates(doc))
+	workspace.onDidChangeTextDocument(e => validateCssTemplates(e.document))
+	workspace.onDidCloseTextDocument(doc => diagnosticCollection.delete(doc.uri))
+
+	context.subscriptions.push(hoverProvider, foldingProvider, colorProvider, completionProvider, diagnosticCollection)
 }
