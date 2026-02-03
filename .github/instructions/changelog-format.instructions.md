@@ -44,7 +44,7 @@ A concise, end-user-focused sentence describing the outcome of the change, using
 - **Fixed RMB drag activation**: holding the right mouse button no longer triggers drag & drop. [🡥](https://github.com/kh4f/manual-sorting/commit/7f1a2b3) [#114](https://github.com/kh4f/manual-sorting/issues/114)
 - **Reliable drop zone cleanup**: drop zones now always clear when releasing the mouse, even outside Obsidian or after opening context menus on Mac. [🡥](https://github.com/kh4f/manual-sorting/commit/8c9d0e1) [#115](https://github.com/kh4f/manual-sorting/issues/115) [#116](https://github.com/kh4f/manual-sorting/issues/116)
 
-##### &emsp;&emsp; [_Full Changelog_](https://github.com/kh4f/manual-sorting/compare/3.2.2...3.2.3) &ensp;•&ensp; _Dec 26, 2025_
+##### &emsp;&emsp; [Full Changelog](https://github.com/kh4f/manual-sorting/compare/3.2.2...3.2.3) &ensp;•&ensp; Dec 26, 2025
 ```
 
 ```md
@@ -64,7 +64,7 @@ A concise, end-user-focused sentence describing the outcome of the change, using
 - **Clearer active drop indicator**: improved the visual clarity of the active drop zone for more precise positioning. [🡥](https://github.com/kh4f/manual-sorting/commit/7g8h9i0)
 - **Updated drag handle icon**: drag handles now use the more familiar 2×3 dot pattern. [🡥](https://github.com/kh4f/manual-sorting/commit/6b7c8d9)
 
-##### &emsp;&emsp; [_Full Changelog_](https://github.com/kh4f/manual-sorting/compare/3.2.1...3.2.2) &ensp;•&ensp; _Dec 24, 2025_
+##### &emsp;&emsp; [Full Changelog](https://github.com/kh4f/manual-sorting/compare/3.2.1...3.2.2) &ensp;•&ensp; Dec 24, 2025
 ```
 
 ```md
@@ -83,5 +83,5 @@ A concise, end-user-focused sentence describing the outcome of the change, using
 ### &emsp; ⚙️ Internal
 - **Settings migration**: settings storage has been updated with automatic migration to the new v4 format. [🡥](https://github.com/kh4f/manual-sorting/commit/0e1f2g3)
 
-##### &emsp;&emsp; [_Full Changelog_](https://github.com/kh4f/manual-sorting/compare/2.5.1...3.0.0) &ensp;•&ensp; _Nov 6, 2025_
+##### &emsp;&emsp; [Full Changelog](https://github.com/kh4f/manual-sorting/compare/2.5.1...3.0.0) &ensp;•&ensp; Nov 6, 2025
 ```
