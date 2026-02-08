@@ -4,7 +4,7 @@
 ## &ensp; [` 📦 v0.2.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.2.0...v0.2.1)
 
 ### &emsp; 📚 Documentation
-- **Documentation & branding**: introduced a `README.md` with project overview, features and usage instructions; added `logo.png` and `demo.png` for branding and visual demonstration. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/bea0006)
+- **Documentation & branding**: introduced a `README.md` with project overview, features and usage instructions; added `logo.png` and `demo.png` for branding and visual demonstration. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/8568b27)
 
 ##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.2.0...v0.2.1) &ensp;•&ensp; Feb 8, 2026
 
