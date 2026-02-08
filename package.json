@@ -10,6 +10,7 @@
 	"bugs": "https://github.com/rawstylecss/rawstyle-vscode/issues",
 	"homepage": "https://github.com/rawstylecss/rawstyle-vscode#readme",
 	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
+	"categories": ["Programming Languages", "Formatters", "Snippets", "Linters"],
 	"pnpm": { "onlyBuiltDependencies": ["esbuild", "@vscode/vsce-sign", "keytar"] },
 	"engines": { "vscode": ">=1.109.x" },
 	"files": ["package.json", "README.md", "LICENSE", "CHANGELOG.md", "dist", "syntaxes"],
