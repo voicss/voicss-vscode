@@ -11,10 +11,11 @@
 	"homepage": "https://github.com/rawstylecss/rawstyle-vscode#readme",
 	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
 	"categories": ["Programming Languages", "Formatters", "Snippets", "Linters"],
+	"icon": "icon.png",
 	"galleryBanner": { "color": "#F2F2F2", "theme": "light" },
 	"pnpm": { "onlyBuiltDependencies": ["esbuild", "@vscode/vsce-sign", "keytar"] },
 	"engines": { "vscode": ">=1.109.x" },
-	"files": ["package.json", "README.md", "LICENSE", "CHANGELOG.md", "dist", "syntaxes"],
+	"files": ["package.json", "README.md", "LICENSE", "CHANGELOG.md", "dist", "syntaxes", "icon.png"],
 	"type": "module",
 	"main": "dist/index.js",
 	"activationEvents": [
@@ -44,7 +45,9 @@
 		"build:prod": "tsdown --prod",
 		"lint": "eslint",
 		"release": "relion",
-		"package": "vsce package --no-dependencies"
+		"package": "vsce package --no-dependencies",
+		"prepackage": "cp .github/icon.png icon.png",
+		"postpackage": "rm icon.png"
 	},
 	"dependencies": {
 		"rawstyle": "^0.4.0",
