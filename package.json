@@ -58,7 +58,7 @@
 		"eslint": "^9.39.2",
 		"jiti": "^2.6.1",
 		"relion": "^0.38.0",
-		"tsdown": "^0.20.1",
+		"tsdown": "^0.20.2",
 		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.54.0"
