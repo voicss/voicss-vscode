@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.3.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.2.1...v0.3.0)
+
+### &emsp; 🎁 Features
+- **Expanded completion triggers**: added more trigger characters for CSS completions, providing more flexible and comprehensive suggestions when working with CSS templates. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/8647d3b)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.2.1...v0.3.0) &ensp;•&ensp; Feb 9, 2026
+
+
 ## &ensp; [` 📦 v0.2.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.2.0...v0.2.1)
 
 ### &emsp; 📚 Documentation
