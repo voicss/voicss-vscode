@@ -126,7 +126,7 @@ export function activate(context: ExtensionContext) {
 
 			return completion
 		})
-	} }, ':', ';', ' ', '-')
+	} }, ':', ';', ' ', '-', '#', '@', '$', '(', ')', '"', '\'', '/', '*', '+', ',', '|', '&', '^', '!', '~', '?', '<', '>', '=', '\n')
 
 	const diagnosticCollection = languages.createDiagnosticCollection('rawstyle')
 
