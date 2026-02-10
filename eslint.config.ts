@@ -30,6 +30,7 @@ export default defineConfig([
 			'@stylistic/no-tabs': 'off',
 			'@stylistic/eol-last': ['error', 'never'],
 			'@stylistic/arrow-parens': ['error', 'as-needed'],
+			'@stylistic/max-statements-per-line': ['error', { max: 2 }],
 			'@stylistic/jsx-indent-props': ['error', 'tab'],
 			'@stylistic/jsx-one-expression-per-line': 'off',
 			'@stylistic/jsx-tag-spacing': ['error', { beforeSelfClosing: 'never' }],

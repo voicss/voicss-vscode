@@ -120,9 +120,7 @@ export function activate(context: ExtensionContext) {
 
 		const completions = cssLs.doComplete(virtualDoc, cssPos, stylesheet)
 		const emmetCompletions = doEmmetComplete(virtualDoc, cssPos, 'css', {})
-		emmetCompletions?.items.forEach(i => {
-			i.sortText = '0'
-		})
+		emmetCompletions?.items.forEach(i => { i.sortText = '0' })
 
 		const items = [...(emmetCompletions?.items ?? []), ...completions.items]
 
