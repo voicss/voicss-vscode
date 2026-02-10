@@ -1,0 +1,20 @@
+import { css } from 'rawstyle'
+
+void css`
+	font-size: 14px;
+	font-family: "Inter", sans-serif;
+	color: var(--foreground);
+	text-align: center;
+
+	#id {
+		background: #131313;
+		line-height: 0.7;
+		letter-spacing: -1rem;
+
+		& span {
+			background-color: ivory;
+			color: red;
+			text-transform: uppercase;
+		}
+	}
+`
