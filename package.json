@@ -35,7 +35,7 @@
 				"scopeName": "rawstyle.css.injection",
 				"path": "syntaxes/injection.json",
 				"injectTo": ["source.js", "source.jsx", "source.ts", "source.tsx"],
-				"embeddedLanguages": {"meta.embedded.block.css": "css"}
+				"embeddedLanguages": { "meta.embedded.block.css": "css" }
 			}
 		]
 	},
