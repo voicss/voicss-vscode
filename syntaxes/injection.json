@@ -4,6 +4,7 @@
 	"patterns": [{
 		"begin": "\\bg?css`",
 		"end": "`",
+		"contentName": "meta.embedded.block.css",
 		"patterns": [{ "include": "source.css#rule-list-innards" }]
 	}]
 }
