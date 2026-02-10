@@ -112,8 +112,7 @@ export function activate(context: ExtensionContext) {
 
 		const completions = cssLs.doComplete(virtualDoc, cssPos, stylesheet)
 		return completions.items.map(item => {
-			if (item.kind) item.kind -= 1
-			const completion = new CompletionItem(item.label, item.kind)
+			const completion = new CompletionItem(item.label, item.kind ? item.kind -= 1 : undefined)
 
 			const docValue = typeof item.documentation === 'string' ? item.documentation : item.documentation?.value
 			if (docValue) completion.documentation = new MarkdownString(docValue)
