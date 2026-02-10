@@ -1,7 +1,6 @@
 import { languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString, Diagnostic, DiagnosticSeverity, workspace, DocumentHighlight } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
-import { TextDocument } from 'vscode-languageserver-textdocument'
-import { findCssTemplates } from '@/utils'
+import { createCssContext, toHostRange, findCssTemplates, findTemplateByOffset } from '@/utils'
 import type { ExtensionContext, Range as RangeI, ColorInformation as ColorInformationI, TextDocument as TextDocumentI } from 'vscode'
 
 const cssLs = getCSSLanguageService()
@@ -11,25 +10,19 @@ export function activate(context: ExtensionContext) {
 	const hoverProvider = languages.registerHoverProvider(docSelectors, { provideHover(doc, pos) {
 		const text = doc.getText()
 		const offset = doc.offsetAt(pos)
-		const template = findCssTemplates(text).find(t => offset >= t.tagStart && offset < t.tagEnd)
-		if (!template) return
+		const tpl = findTemplateByOffset(text, offset, 'tag')
+		if (!tpl) return
 
-		const { css, cssStart } = template
-		const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, css)
-		const stylesheet = cssLs.parseStylesheet(virtualDoc)
-		const relPos = virtualDoc.positionAt(offset - cssStart)
+		const { virtualDoc, stylesheet } = createCssContext(cssLs, tpl)
+		const cssPos = virtualDoc.positionAt(offset - tpl.cssStart)
 
-		const lsHover = cssLs.doHover(virtualDoc, relPos, stylesheet)
+		const lsHover = cssLs.doHover(virtualDoc, cssPos, stylesheet)
 		if (!lsHover?.contents) return
 		const contents = [lsHover.contents].flat()
 		const markdownContents = contents.map(c => new MarkdownString(typeof c === 'string' ? c : c.value))
 
 		let range: RangeI | undefined
-		if (lsHover.range) {
-			const rangeStartOffset = cssStart + virtualDoc.offsetAt(lsHover.range.start)
-			const rangeEndOffset = cssStart + virtualDoc.offsetAt(lsHover.range.end)
-			range = new Range(doc.positionAt(rangeStartOffset), doc.positionAt(rangeEndOffset))
-		}
+		if (lsHover.range) range = toHostRange(doc, tpl, virtualDoc, lsHover.range as RangeI)
 		return new Hover(markdownContents, range)
 	} })
 
@@ -37,19 +30,16 @@ export function activate(context: ExtensionContext) {
 		provideDocumentHighlights(doc, pos) {
 			const text = doc.getText()
 			const offset = doc.offsetAt(pos)
-			const tpl = findCssTemplates(text).find(t => offset >= t.cssStart && offset < t.cssEnd)
+			const tpl = findTemplateByOffset(text, offset, 'css')
 			if (!tpl) return
 
-			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
-			const stylesheet = cssLs.parseStylesheet(virtualDoc)
+			const { virtualDoc, stylesheet } = createCssContext(cssLs, tpl)
 			const cssPos = virtualDoc.positionAt(offset - tpl.cssStart)
 
 			const highlights = cssLs.findDocumentHighlights(virtualDoc, cssPos, stylesheet)
 			return highlights.map(h => {
-				const startOffset = tpl.cssStart + virtualDoc.offsetAt(h.range.start)
-				const endOffset = tpl.cssStart + virtualDoc.offsetAt(h.range.end)
 				return new DocumentHighlight(
-					new Range(doc.positionAt(startOffset), doc.positionAt(endOffset)),
+					toHostRange(doc, tpl, virtualDoc, h.range as RangeI),
 					h.kind ? h.kind - 1 : undefined,
 				)
 			})
@@ -61,7 +51,7 @@ export function activate(context: ExtensionContext) {
 		const result: FoldingRange[] = []
 
 		for (const tpl of findCssTemplates(text)) {
-			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
+			const { virtualDoc } = createCssContext(cssLs, tpl)
 			const ranges = cssLs.getFoldingRanges(virtualDoc)
 			if (!ranges.length) continue
 
@@ -86,16 +76,12 @@ export function activate(context: ExtensionContext) {
 			const result: ColorInformationI[] = []
 
 			for (const tpl of findCssTemplates(text)) {
-				const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
-				const stylesheet = cssLs.parseStylesheet(virtualDoc)
+				const { virtualDoc, stylesheet } = createCssContext(cssLs, tpl)
 				const colors = cssLs.findDocumentColors(virtualDoc, stylesheet)
 
 				for (const c of colors) {
-					const startOffset = tpl.cssStart + virtualDoc.offsetAt(c.range.start)
-					const endOffset = tpl.cssStart + virtualDoc.offsetAt(c.range.end)
-
 					result.push(new ColorInformation(
-						new Range(doc.positionAt(startOffset), doc.positionAt(endOffset)),
+						toHostRange(doc, tpl, virtualDoc, c.range as RangeI),
 						new Color(c.color.red, c.color.green, c.color.blue, c.color.alpha),
 					))
 				}
@@ -108,11 +94,10 @@ export function activate(context: ExtensionContext) {
 			const doc = context.document
 			const text = doc.getText()
 			const offset = doc.offsetAt(context.range.start)
-			const tpl = findCssTemplates(text).find(t => offset >= t.cssStart && offset < t.cssEnd)
+			const tpl = findTemplateByOffset(text, offset, 'css')
 			if (!tpl) return
 
-			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
-			const stylesheet = cssLs.parseStylesheet(virtualDoc)
+			const { virtualDoc, stylesheet } = createCssContext(cssLs, tpl)
 			const cssRange = {
 				start: virtualDoc.positionAt(offset - tpl.cssStart),
 				end: virtualDoc.positionAt(offset - tpl.cssStart + doc.offsetAt(context.range.end) - offset),
@@ -126,16 +111,15 @@ export function activate(context: ExtensionContext) {
 	const completionProvider = languages.registerCompletionItemProvider(docSelectors, { provideCompletionItems(doc, pos) {
 		const text = doc.getText()
 		const offset = doc.offsetAt(pos)
-		const tpl = findCssTemplates(text).find(t => offset >= t.cssStart && offset < t.cssEnd)
+		const tpl = findTemplateByOffset(text, offset, 'css')
 		if (!tpl) return
 
-		const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
-		const stylesheet = cssLs.parseStylesheet(virtualDoc)
+		const { virtualDoc, stylesheet } = createCssContext(cssLs, tpl)
 		const cssPos = virtualDoc.positionAt(offset - tpl.cssStart)
 
 		const completions = cssLs.doComplete(virtualDoc, cssPos, stylesheet)
 		return completions.items.map(item => {
-			const completion = new CompletionItem(item.label, item.kind ? item.kind -= 1 : undefined)
+			const completion = new CompletionItem(item.label, item.kind ? item.kind - 1 : undefined)
 
 			const docValue = typeof item.documentation === 'string' ? item.documentation : item.documentation?.value
 			if (docValue) completion.documentation = new MarkdownString(docValue)
@@ -159,8 +143,7 @@ export function activate(context: ExtensionContext) {
 		const diagnostics: Diagnostic[] = []
 
 		for (const tpl of findCssTemplates(text)) {
-			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
-			const stylesheet = cssLs.parseStylesheet(virtualDoc)
+			const { virtualDoc, stylesheet } = createCssContext(cssLs, tpl)
 			const errors = cssLs.doValidation(virtualDoc, stylesheet)
 
 			errors.forEach(error => {

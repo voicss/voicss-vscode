@@ -1,5 +1,21 @@
+import { Range } from 'vscode'
 import { TEMPLATE_PATTERN } from 'rawstyle'
+import { TextDocument } from 'vscode-languageserver-textdocument'
+import type { Range as RangeI, TextDocument as TextDocumentI } from 'vscode'
+import type { LanguageService } from 'vscode-css-languageservice'
 import type { CssTemplate } from '@/types'
+
+export const createCssContext = (cssLs: LanguageService, tpl: CssTemplate) => {
+	const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
+	const stylesheet = cssLs.parseStylesheet(virtualDoc)
+	return { virtualDoc, stylesheet }
+}
+
+export const toHostRange = (doc: TextDocumentI, tpl: CssTemplate, virtualDoc: TextDocument, range: RangeI) => {
+	const startOffset = tpl.cssStart + virtualDoc.offsetAt(range.start)
+	const endOffset = tpl.cssStart + virtualDoc.offsetAt(range.end)
+	return new Range(doc.positionAt(startOffset), doc.positionAt(endOffset))
+}
 
 export const findCssTemplates = (text: string): CssTemplate[] => {
 	const result: CssTemplate[] = []
@@ -23,3 +39,8 @@ export const findCssTemplates = (text: string): CssTemplate[] => {
 
 	return result
 }
+
+export const findTemplateByOffset = (text: string, offset: number, region: 'tag' | 'css') => findCssTemplates(text).find(t =>
+	offset >= t[region === 'tag' ? 'tagStart' : 'cssStart']
+	&& offset < t[region === 'tag' ? 'tagEnd' : 'cssEnd'],
+)
