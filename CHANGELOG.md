@@ -1,6 +1,17 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.4.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.3.0...v0.4.0)
+
+### &emsp; 🎁 Features
+- **CSS symbol highlighting**: enabled highlighting of CSS symbols (properties, values, variables) when the cursor is on them. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/3998c93)
+
+### &emsp; 🩹 Fixes
+- **Completion popup trigger fix**: inserting a line break in CSS templates no longer opens the completion popup. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/ddd9a88)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.3.0...v0.4.0) &ensp;•&ensp; Feb 10, 2026
+
+
 ## &ensp; [` 📦 v0.3.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.2.1...v0.3.0)
 
 ### &emsp; 🎁 Features
