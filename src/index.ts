@@ -12,7 +12,7 @@ export function activate(context: ExtensionContext) {
 		const text = doc.getText()
 		const offset = doc.offsetAt(pos)
 		const template = findCssTemplates(text).find(t => offset >= t.tagStart && offset < t.tagEnd)
-		if (!template) return null
+		if (!template) return
 
 		const { css, cssStart } = template
 		const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, css)
@@ -20,7 +20,7 @@ export function activate(context: ExtensionContext) {
 		const relPos = virtualDoc.positionAt(offset - cssStart)
 
 		const lsHover = cssLs.doHover(virtualDoc, relPos, stylesheet)
-		if (!lsHover?.contents) return null
+		if (!lsHover?.contents) return
 		const contents = [lsHover.contents].flat()
 		const markdownContents = contents.map(c => new MarkdownString(typeof c === 'string' ? c : c.value))
 
@@ -38,7 +38,7 @@ export function activate(context: ExtensionContext) {
 			const text = doc.getText()
 			const offset = doc.offsetAt(pos)
 			const tpl = findCssTemplates(text).find(t => offset >= t.cssStart && offset < t.cssEnd)
-			if (!tpl) return null
+			if (!tpl) return
 
 			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
 			const stylesheet = cssLs.parseStylesheet(virtualDoc)
@@ -127,7 +127,7 @@ export function activate(context: ExtensionContext) {
 		const text = doc.getText()
 		const offset = doc.offsetAt(pos)
 		const tpl = findCssTemplates(text).find(t => offset >= t.cssStart && offset < t.cssEnd)
-		if (!tpl) return null
+		if (!tpl) return
 
 		const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
 		const stylesheet = cssLs.parseStylesheet(virtualDoc)
