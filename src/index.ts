@@ -1,4 +1,4 @@
-import { languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString, Diagnostic, DiagnosticSeverity, workspace, DocumentHighlight } from 'vscode'
+import { languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, CompletionList, SnippetString, Diagnostic, DiagnosticSeverity, workspace, DocumentHighlight } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { doComplete as doEmmetComplete } from '@vscode/emmet-helper'
 import { createCssContext, toHostRange, findCssTemplates, findTemplateByOffset } from '@/utils'
@@ -126,7 +126,7 @@ export function activate(context: ExtensionContext) {
 
 		const items = [...(emmetCompletions?.items ?? []), ...completions.items]
 
-		return items.map(item => {
+		return new CompletionList(items.map(item => {
 			const completion = new CompletionItem(item.label, item.kind ? item.kind - 1 : undefined)
 
 			const docValue = typeof item.documentation === 'string' ? item.documentation : item.documentation?.value
@@ -139,7 +139,7 @@ export function activate(context: ExtensionContext) {
 			completion.command = item.command
 
 			return completion
-		})
+		}), true)
 	} }, ':', ';', ' ', '-', '#', '@', '$', '(', ')', '"', '\'', '/', '*', '+', ',', '|', '&', '^', '!', '~', '?', '<', '>', '=')
 
 	const diagnosticCollection = languages.createDiagnosticCollection('rawstyle')
