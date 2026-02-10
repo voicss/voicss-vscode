@@ -1,4 +1,4 @@
-import { languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString, Diagnostic, DiagnosticSeverity, workspace } from 'vscode'
+import { languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString, Diagnostic, DiagnosticSeverity, workspace, DocumentHighlight } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import { findCssTemplates } from '@/utils'
@@ -32,6 +32,29 @@ export function activate(context: ExtensionContext) {
 		}
 		return new Hover(markdownContents, range)
 	} })
+
+	const highlightProvider = languages.registerDocumentHighlightProvider(docSelectors, {
+		provideDocumentHighlights(doc, pos) {
+			const text = doc.getText()
+			const offset = doc.offsetAt(pos)
+			const tpl = findCssTemplates(text).find(t => offset >= t.cssStart && offset < t.cssEnd)
+			if (!tpl) return null
+
+			const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
+			const stylesheet = cssLs.parseStylesheet(virtualDoc)
+			const cssPos = virtualDoc.positionAt(offset - tpl.cssStart)
+
+			const highlights = cssLs.findDocumentHighlights(virtualDoc, cssPos, stylesheet)
+			return highlights.map(h => {
+				const startOffset = tpl.cssStart + virtualDoc.offsetAt(h.range.start)
+				const endOffset = tpl.cssStart + virtualDoc.offsetAt(h.range.end)
+				return new DocumentHighlight(
+					new Range(doc.positionAt(startOffset), doc.positionAt(endOffset)),
+					h.kind ? h.kind - 1 : undefined,
+				)
+			})
+		},
+	})
 
 	const foldingProvider = languages.registerFoldingRangeProvider(docSelectors, { provideFoldingRanges(doc) {
 		const text = doc.getText()
@@ -161,5 +184,5 @@ export function activate(context: ExtensionContext) {
 	workspace.onDidChangeTextDocument(e => validateCssTemplates(e.document))
 	workspace.onDidCloseTextDocument(doc => diagnosticCollection.delete(doc.uri))
 
-	context.subscriptions.push(hoverProvider, foldingProvider, colorProvider, completionProvider, diagnosticCollection)
+	context.subscriptions.push(hoverProvider, highlightProvider, foldingProvider, colorProvider, completionProvider, diagnosticCollection)
 }
