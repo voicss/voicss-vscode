@@ -5,7 +5,7 @@ import { findCssTemplates } from '@/utils'
 import type { ExtensionContext, Range as RangeI, ColorInformation as ColorInformationI, TextDocument as TextDocumentI } from 'vscode'
 
 const cssLs = getCSSLanguageService()
-const docSelectors = ['typescriptreact', 'typescript', 'javascriptreact', 'javascript']
+const docSelectors = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
 
 export function activate(context: ExtensionContext) {
 	const hoverProvider = languages.registerHoverProvider(docSelectors, { provideHover(doc, pos) {
