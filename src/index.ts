@@ -1,5 +1,6 @@
 import { languages, MarkdownString, Range, Hover, FoldingRange, FoldingRangeKind, Color, ColorInformation, ColorPresentation, CompletionItem, SnippetString, Diagnostic, DiagnosticSeverity, workspace, DocumentHighlight } from 'vscode'
 import { getCSSLanguageService } from 'vscode-css-languageservice'
+import { doComplete as doEmmetComplete } from '@vscode/emmet-helper'
 import { createCssContext, toHostRange, findCssTemplates, findTemplateByOffset } from '@/utils'
 import type { ExtensionContext, Range as RangeI, ColorInformation as ColorInformationI, TextDocument as TextDocumentI } from 'vscode'
 
@@ -118,7 +119,14 @@ export function activate(context: ExtensionContext) {
 		const cssPos = virtualDoc.positionAt(offset - tpl.cssStart)
 
 		const completions = cssLs.doComplete(virtualDoc, cssPos, stylesheet)
-		return completions.items.map(item => {
+		const emmetCompletions = doEmmetComplete(virtualDoc, cssPos, 'css', {})
+		emmetCompletions?.items.forEach(i => {
+			i.sortText = '0'
+		})
+
+		const items = [...(emmetCompletions?.items ?? []), ...completions.items]
+
+		return items.map(item => {
 			const completion = new CompletionItem(item.label, item.kind ? item.kind - 1 : undefined)
 
 			const docValue = typeof item.documentation === 'string' ? item.documentation : item.documentation?.value
