@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.5.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.5.0...v0.5.1)
+
+### &emsp; 🩹 Fixes
+- **Bundled emmet-helper**: extension now works correctly after vsix installation by bundling `@vscode/emmet-helper` in the output. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/575de19)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.5.0...v0.5.1) &ensp;•&ensp; Feb 11, 2026
+
+
 ## &ensp; [` 📦 v0.5.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.4.0...v0.5.0)
 
 ### &emsp; 🎁 Features
