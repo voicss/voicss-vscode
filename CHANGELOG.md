@@ -1,6 +1,17 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.5.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.4.0...v0.5.0)
+
+### &emsp; 🎁 Features
+- **Emmet CSS snippets**: Emmet-powered CSS snippets are now available inside Rawstyle template literals. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/06667e0)
+
+### &emsp; 🩹 Fixes
+- **Standard CSS comments**: resolved an issue where JS-style comments (`//`) were used instead of CSS-style comments (`/* */`) when toggling comments inside templates. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/48297f3)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.4.0...v0.5.0) &ensp;•&ensp; Feb 11, 2026
+
+
 ## &ensp; [` 📦 v0.4.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.3.0...v0.4.0)
 
 ### &emsp; 🎁 Features
