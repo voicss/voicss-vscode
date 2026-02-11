@@ -4,7 +4,7 @@ import tseslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
 
 export default defineConfig([
-	globalIgnores(['dist'], 'Global Ignores'),
+	globalIgnores(['dist', 'playground'], 'Global Ignores'),
 	{
 		name: 'Base Rules',
 		files: ['**/*.ts?(x)'],
