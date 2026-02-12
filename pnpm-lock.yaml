@@ -12,7 +12,7 @@ importers:
         specifier: ^2.11.0
         version: 2.11.0
       rawstyle:
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: 0.4.2
       vscode-css-languageservice:
         specifier: ^6.3.9

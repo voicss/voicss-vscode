@@ -51,7 +51,7 @@
 	},
 	"dependencies": {
 		"@vscode/emmet-helper": "^2.11.0",
-		"rawstyle": "^0.4.1",
+		"rawstyle": "^0.4.2",
 		"vscode-css-languageservice": "^6.3.9",
 		"vscode-languageserver-textdocument": "^1.0.12"
 	},
