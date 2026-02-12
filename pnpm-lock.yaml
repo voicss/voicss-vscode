@@ -43,8 +43,8 @@ importers:
         specifier: ^2.6.1
         version: 2.6.1
       relion:
-        specifier: ^0.38.0
-        version: 0.38.0
+        specifier: ^0.39.1
+        version: 0.39.1
       tsdown:
         specifier: ^0.20.3
         version: 0.20.3(typescript@5.9.3)
@@ -1792,8 +1792,8 @@ packages:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
 
-  relion@0.38.0:
-    resolution: {integrity: sha512-8oagLJD0OwDa8G0P7UbbFNR1lCVI0PJWOHWWP4xTD1MxsgX04SaP/DC9DG1DXUrST3RMW4arXNnMSi/rGSKPwA==}
+  relion@0.39.1:
+    resolution: {integrity: sha512-Se1XgUsPolCExkba4qk1O/EC2iKoTLMqVNmsMzWEdijEfwNZ7lSgGrbd/jz6M7AJn7yXqUp4fHYCwvCLwZuzTA==}
     hasBin: true
 
   require-from-string@2.0.2:
@@ -1863,6 +1863,11 @@ packages:
 
   semver@7.7.3:
     resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.7.4:
+    resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -3967,9 +3972,9 @@ snapshots:
       util-deprecate: 1.0.2
     optional: true
 
-  relion@0.38.0:
+  relion@0.39.1:
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.4
 
   require-from-string@2.0.2: {}
 
@@ -4042,6 +4047,8 @@ snapshots:
   semver@5.7.2: {}
 
   semver@7.7.3: {}
+
+  semver@7.7.4: {}
 
   shebang-command@2.0.0:
     dependencies:
