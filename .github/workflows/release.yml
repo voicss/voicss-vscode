@@ -46,12 +46,12 @@ jobs:
       - name: Create release archive
         run: zip -r $ZIP package.json LICENSE README.md dist syntaxes
 
-      - name: Create GitHub release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create $TAG --title $TAG --draft $ZIP $VSIX
-
       - name: Publish to Visual Studio Marketplace
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: pnpm vsce publish
+
+      - name: Create GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create $TAG --title $TAG --draft $ZIP $VSIX
