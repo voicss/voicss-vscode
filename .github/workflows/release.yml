@@ -49,7 +49,7 @@ jobs:
       - name: Publish to Visual Studio Marketplace
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: pnpm vsce publish
+        run: pnpm vsce publish --packagePath $VSIX
 
       - name: Create GitHub release
         env:
