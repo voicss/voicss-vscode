@@ -49,13 +49,11 @@
 		"prepackage": "cp .github/icon.png icon.png",
 		"postpackage": "rm icon.png"
 	},
-	"dependencies": {
+	"devDependencies": {
 		"@vscode/emmet-helper": "^2.11.0",
 		"rawstyle": "^0.4.2",
 		"vscode-css-languageservice": "^6.3.9",
-		"vscode-languageserver-textdocument": "^1.0.12"
-	},
-	"devDependencies": {
+		"vscode-languageserver-textdocument": "^1.0.12",
 		"@eslint/js": "^10.0.1",
 		"@stylistic/eslint-plugin": "^5.8.0",
 		"@types/node": "^25.2.2",

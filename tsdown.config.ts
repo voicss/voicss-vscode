@@ -11,6 +11,5 @@ export default {
 	sourcemap: isProd ? false : 'inline',
 	fixedExtension: false,
 	external: ['vscode'],
-	noExternal: ['rawstyle', 'vscode-css-languageservice', 'vscode-languageserver-textdocument', '@vscode/emmet-helper'],
 	inlineOnly: false,
 } satisfies UserConfig
