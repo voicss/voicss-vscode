@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.6.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.5.1...v0.6.0)
+
+### &emsp; 🎁 Features
+- **Support for `if-else` blocks**: validation now skips errors inside `if()` blocks in CSS templates, preventing false positives from the CSS language service. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/5517a30)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.5.1...v0.6.0) &ensp;•&ensp; Feb 13, 2026
+
+
 ## &ensp; [` 📦 v0.5.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.5.0...v0.5.1)
 
 ### &emsp; 🩹 Fixes
