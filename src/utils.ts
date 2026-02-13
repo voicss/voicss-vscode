@@ -41,10 +41,10 @@ export const findCssTemplates = (text: string): CssTemplate[] => {
 }
 
 const sanitizeCss = (css: string) => {
-	let validCss = css
+	let cleanCss = css.replace(/\/\*[\s\S]*?\*\//g, '')
 	for (const match of css.matchAll(/^.*?if\([\s\S]*?\);/gm))
-		validCss = validCss.replace(match[0], `/*${match[0].slice(4)}*/`)
-	return validCss
+		cleanCss = cleanCss.replace(match[0], `/*${match[0].slice(4)}*/`)
+	return cleanCss
 }
 
 export const findTemplateByOffset = (text: string, offset: number, region: 'tag' | 'css') => findCssTemplates(text).find(t =>
