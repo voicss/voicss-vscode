@@ -45,7 +45,7 @@
 		"build:prod": "tsdown --prod",
 		"lint": "eslint",
 		"release": "relion",
-		"package": "pnpm build:prod && vsce package --no-dependencies",
+		"package": "pnpm build:prod && vsce package",
 		"prepackage": "cp .github/icon.png icon.png",
 		"postpackage": "rm icon.png"
 	},
