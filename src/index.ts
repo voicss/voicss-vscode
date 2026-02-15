@@ -153,10 +153,11 @@ export function activate(context: ExtensionContext) {
 			const errors = cssLs.doValidation(virtualDoc, stylesheet)
 
 			errors.forEach(error => {
-				const startPos = doc.positionAt(tpl.cssStart + virtualDoc.offsetAt(error.range.start))
-				const endPos = doc.positionAt(tpl.cssStart + virtualDoc.offsetAt(error.range.end))
+				const startOffset = tpl.cssStart + virtualDoc.offsetAt(error.range.start)
+				const endOffset = tpl.cssStart + virtualDoc.offsetAt(error.range.end)
+				if (tpl.ignoredRanges.some(([s, e]) => startOffset >= s && endOffset <= e)) return
 				const diagnostic = new Diagnostic(
-					new Range(startPos, endPos),
+					new Range(doc.positionAt(startOffset), doc.positionAt(endOffset)),
 					error.message,
 					error.severity === 1 ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning,
 				)

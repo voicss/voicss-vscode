@@ -1,6 +1,7 @@
 export interface CssTemplate {
 	css: string
 	validCss: string
+	ignoredRanges: [number, number][]
 	tagStart: number
 	tagEnd: number
 	cssStart: number

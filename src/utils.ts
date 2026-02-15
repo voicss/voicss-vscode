@@ -34,7 +34,7 @@ export const findCssTemplates = (text: string): CssTemplate[] => {
 			cssEnd += suffix.length
 		}
 
-		result.push({ css, validCss: sanitizeCss(css), tagStart, tagEnd, cssStart, cssEnd })
+		result.push({ css, validCss: sanitizeCss(css), ignoredRanges: getIgnoredRanges(text), tagStart, tagEnd, cssStart, cssEnd })
 	}
 
 	return result
@@ -45,6 +45,13 @@ const sanitizeCss = (css: string) => {
 	for (const match of css.matchAll(/^.*?if\([\s\S]*?\);/gm))
 		cleanCss = cleanCss.replace(match[0], `/*${match[0].slice(4)}*/`)
 	return cleanCss
+}
+
+const getIgnoredRanges = (text: string) => {
+	const ignoredRanges: [number, number][] = []
+	for (const match of text.matchAll(/\/.*?\//g))
+		ignoredRanges.push([match.index, match.index + match[0].length])
+	return ignoredRanges
 }
 
 export const findTemplateByOffset = (text: string, offset: number, region: 'tag' | 'css') => findCssTemplates(text).find(t =>
