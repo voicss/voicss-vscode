@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.6.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.0...v0.6.1)
+
+### &emsp; 🩹 Fixes
+- **Suppressed false positives in regex regions**: validation now skips regions matching regular expressions, preventing incorrect CSS errors inside template strings. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/668f880)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.0...v0.6.1) &ensp;•&ensp; Feb 15, 2026
+
+
 ## &ensp; [` 📦 v0.6.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.5.1...v0.6.0)
 
 ### &emsp; 🎁 Features
