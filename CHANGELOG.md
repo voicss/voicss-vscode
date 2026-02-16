@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 0.6.2  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.1...v0.6.2)
+
+### &emsp; 🩹 Fixes
+- **Corrected validation exclusions**: CSS validation now properly ignores block comments, line comments, and regex literals, preventing false diagnostics. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/2237b7b)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.1...v0.6.2) &ensp;•&ensp; Feb 16, 2026
+
+
 ## &ensp; [` 📦 v0.6.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.0...v0.6.1)
 
 ### &emsp; 🩹 Fixes
