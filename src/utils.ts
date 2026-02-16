@@ -49,7 +49,7 @@ const sanitizeCss = (css: string) => {
 
 const getIgnoredRanges = (text: string) => {
 	const ignoredRanges: [number, number][] = []
-	for (const match of text.matchAll(/\/.*?\//g))
+	for (const match of text.matchAll(/\/.+?\//g))
 		ignoredRanges.push([match.index, match.index + match[0].length])
 	return ignoredRanges
 }
