@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.6.3  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.2...v0.6.3)
+
+### &emsp; 🩹 Fixes
+- **Color swatches in conditional CSS**: color swatches now display correctly for CSS properties followed by `if()` blocks. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/0d44e2b)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.2...v0.6.3) &ensp;•&ensp; Feb 19, 2026
+
+
 ## &ensp; [` 📦 0.6.2  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.1...v0.6.2)
 
 ### &emsp; 🩹 Fixes
