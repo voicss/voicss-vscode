@@ -138,7 +138,7 @@ export function activate(context: ExtensionContext) {
 
 			return completion
 		}), true)
-	} }, ':', ';', ' ', '-', '#', '@', '$', '(', ')', '"', '\'', '/', '*', '+', ',', '|', '&', '^', '!', '~', '?', '<', '>', '=')
+	} }, ':', ';', ' ', '-', '#', '@', '$', '(', ')', '"', '\'', '/', '*', '+', ',', '|', '&', '^', '~', '?', '<', '>', '=')
 
 	const diagnosticCollection = languages.createDiagnosticCollection('rawstyle')
 
