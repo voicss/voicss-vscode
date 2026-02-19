@@ -43,7 +43,7 @@ export const findCssTemplates = (text: string): CssTemplate[] => {
 const sanitizeCss = (css: string) => {
 	let cleanCss = css.replace(/\/\*[\s\S]*?\*\//g, '')
 	for (const match of css.matchAll(/^.*?if\([\s\S]*?\);/gm))
-		cleanCss = cleanCss.replace(match[0], `/*${match[0].slice(4)}*/`)
+		cleanCss = css.replace(match[0], `/*${match[0].slice(4)}*/`)
 	return cleanCss
 }
 
