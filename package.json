@@ -59,7 +59,7 @@
 		"@types/node": "^25.2.3",
 		"@types/vscode": "^1.109.0",
 		"@vscode/vsce": "^3.7.1",
-		"eslint": "^9.39.2",
+		"eslint": "^10.0.0",
 		"jiti": "^2.6.1",
 		"relion": "^0.39.1",
 		"tsdown": "^0.20.3",
