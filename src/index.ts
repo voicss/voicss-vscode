@@ -149,7 +149,7 @@ export function activate(context: ExtensionContext) {
 		const diagnostics: Diagnostic[] = []
 
 		for (const tpl of findCssTemplates(text)) {
-			const { virtualDoc, stylesheet } = createCssContext(cssLs, tpl, tpl.validCss)
+			const { virtualDoc, stylesheet } = createCssContext(cssLs, tpl)
 			const errors = cssLs.doValidation(virtualDoc, stylesheet)
 
 			errors.forEach(error => {

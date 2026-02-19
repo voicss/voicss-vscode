@@ -5,8 +5,8 @@ import type { Range as RangeI, TextDocument as TextDocumentI } from 'vscode'
 import type { LanguageService } from 'vscode-css-languageservice'
 import type { CssTemplate } from '@/types'
 
-export const createCssContext = (cssLs: LanguageService, tpl: CssTemplate, css?: string) => {
-	const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, css ?? tpl.css)
+export const createCssContext = (cssLs: LanguageService, tpl: CssTemplate) => {
+	const virtualDoc = TextDocument.create('rawstyle.css', 'css', 1, tpl.css)
 	const stylesheet = cssLs.parseStylesheet(virtualDoc)
 	return { virtualDoc, stylesheet }
 }
@@ -34,7 +34,7 @@ export const findCssTemplates = (text: string): CssTemplate[] => {
 			cssEnd += suffix.length
 		}
 
-		result.push({ css, validCss: sanitizeCss(css), ignoredRanges: getIgnoredRanges(text), tagStart, tagEnd, cssStart, cssEnd })
+		result.push({ css: sanitizeCss(css), ignoredRanges: getIgnoredRanges(text), tagStart, tagEnd, cssStart, cssEnd })
 	}
 
 	return result

@@ -36,6 +36,9 @@ void gcss`
 		height: 100vh;
 		overflow: hidden;
 		margin: 0;
+		color: ivory;
+		width: if(style(--var: 1): 100%; else: 200px;);
+		color: tomato;
 		cursor: crosshair;
 		
 		&.dark {
