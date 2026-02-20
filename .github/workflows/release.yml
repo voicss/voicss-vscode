@@ -34,9 +34,6 @@ jobs:
       - name: Install deps
         run: pnpm install
 
-      - name: Build
-        run: pnpm build:prod
-
       - name: Lint
         run: pnpm lint
 
