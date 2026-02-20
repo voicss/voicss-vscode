@@ -1,10 +1,17 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.6.5  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.4...v0.6.5)
+
+### &emsp; 🩹 Fixes
+- **Fixed duplicated `!` in `!important` snippet**: the `!important` snippet now inserts only `important`, preventing double exclamation marks in completions. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/2c363e2)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.4...v0.6.5) &ensp;•&ensp; Feb 20, 2026
+
+
 ## &ensp; [` 📦 v0.6.4  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.3...v0.6.4)
 
 ### &emsp; 🩹 Fixes
-- **Improved completion triggers**: prevented duplicate exclamation marks when accepting `!important` suggestions by removing `!` from trigger characters. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/a898aae)
 - **Prioritized Emmet abbreviations**: Emmet abbreviations now always appear at the top of the suggestion list, ahead of other completions. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/c23cd11)
 - **Corrected conditional block handling**: fixed CSS sanitization for multiple `if` blocks, resolving issues with misaligned color swatches, warnings, and hovers. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/4e148eb)
 
