@@ -131,6 +131,7 @@ export function activate(context: ExtensionContext) {
 			if (docValue) completion.documentation = new MarkdownString(docValue)
 
 			if (item.textEdit?.newText) completion.insertText = new SnippetString(item.textEdit.newText)
+			if (item.label === '!important') completion.insertText = 'important'
 			completion.detail = item.detail
 			completion.tags = item.tags
 			completion.sortText = item.sortText
