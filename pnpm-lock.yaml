@@ -36,8 +36,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0
       relion:
-        specifier: ^0.39.1
-        version: 0.39.1
+        specifier: ^0.39.2
+        version: 0.39.2
       tsdown:
         specifier: ^0.20.3
         version: 0.20.3(typescript@5.9.3)
@@ -1797,8 +1797,8 @@ packages:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
 
-  relion@0.39.1:
-    resolution: {integrity: sha512-Se1XgUsPolCExkba4qk1O/EC2iKoTLMqVNmsMzWEdijEfwNZ7lSgGrbd/jz6M7AJn7yXqUp4fHYCwvCLwZuzTA==}
+  relion@0.39.2:
+    resolution: {integrity: sha512-/yqRnSE5entRBmXLcfeb8dU2rJPUV+kxCimkd/CQKPhneLXLI0FmEZXgGpb3azeFcJ6qYvdNlHND+NiOX9sI4Q==}
     hasBin: true
 
   require-from-string@2.0.2:
@@ -3756,7 +3756,7 @@ snapshots:
 
   node-abi@3.87.0:
     dependencies:
-      semver: 7.7.3
+      semver: 7.7.4
     optional: true
 
   node-addon-api@4.3.0:
@@ -3964,7 +3964,7 @@ snapshots:
       util-deprecate: 1.0.2
     optional: true
 
-  relion@0.39.1:
+  relion@0.39.2:
     dependencies:
       semver: 7.7.4
 
