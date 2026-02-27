@@ -1,5 +1,8 @@
 <div align="center">
-	<img alt="logo" src=".github/logo.png">
+	<picture>
+		<source media="(prefers-color-scheme: dark)" srcset=".github/logo-light.png">
+		<img alt="logo" src=".github/logo-dark.png">
+	</picture>
 	<br>
 	A VS Code extension that brings <b>native CSS features to Rawstyle templates</b>
 	<br><br>
