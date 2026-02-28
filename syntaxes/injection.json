@@ -2,7 +2,7 @@
 	"scopeName": "rawstyle.css.injection",
 	"injectionSelector": "L:source -string -comment",
 	"patterns": [{
-		"begin": "\\bg?css`",
+		"begin": "\\bcss`",
 		"end": "`",
 		"contentName": "meta.embedded.block.css",
 		"patterns": [{ "include": "source.css#rule-list-innards" }]

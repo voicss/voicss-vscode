@@ -1,6 +1,6 @@
-import { css, gcss } from 'rawstyle'
+import { css } from 'rawstyle'
 
-void css`
+const _ = css`
 	font-size: 14rem;
 	font-family: "Tiny5", sans-serif;
 	color: var(--foreground);
@@ -25,7 +25,7 @@ void css`
 	}
 `
 
-void gcss`
+void css`
 	:root {
 		--background: #ebebeb;
 		--foreground: #303030;
@@ -40,17 +40,17 @@ void gcss`
 		width: if(style(--var: 1): 100%; else: 200px;);
 		color: tomato;
 		cursor: crosshair;
-		
+
 		&.dark {
 			--background: #303030;
 			--foreground: #ebebeb;
 		}
-		
+
 		main {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			
+
 			&:hover {
 				cursor: default;
 			}

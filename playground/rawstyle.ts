@@ -1,11 +1,13 @@
 import { css } from 'rawstyle'
 
 void css`
-	font-size: 14px;
-	font-family: "Inter", sans-serif;
-	color: var(--foreground);
-	text-align: center;
-	width: if(style(--var: 1): 100%; else: 200px;);
+	:root {
+		font-size: 14px;
+		font-family: "Inter", sans-serif;
+		color: var(--foreground);
+		text-align: center;
+		width: if(style(--var: 1): 100%; else: 200px;);
+	}
 
 	#id {
 		background: #131313;

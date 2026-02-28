@@ -28,7 +28,7 @@ export const findCssTemplates = (text: string): CssTemplate[] => {
 		let cssStart = tagStart
 		let cssEnd = tagEnd
 
-		if (!match[0].startsWith('g')) {
+		if (text.slice(0, match.index).trimEnd().endsWith('=')) {
 			const prefix = '.class { '
 			const suffix = ' }'
 			css = `${prefix}${css}${suffix}`
