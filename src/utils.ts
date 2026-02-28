@@ -19,6 +19,8 @@ export const toHostRange = (doc: TextDocumentI, tpl: CssTemplate, virtualDoc: Te
 
 export const findCssTemplates = (text: string): CssTemplate[] => {
 	const result: CssTemplate[] = []
+	const ignoredRanges = getIgnoredRanges(text)
+
 	for (const match of text.matchAll(TEMPLATE_PATTERN)) {
 		let css = match[1]
 		const tagStart = text.indexOf('`', match.index) + 1
@@ -34,7 +36,7 @@ export const findCssTemplates = (text: string): CssTemplate[] => {
 			cssEnd += suffix.length
 		}
 
-		result.push({ css: sanitizeCss(css), ignoredRanges: getIgnoredRanges(text), tagStart, tagEnd, cssStart, cssEnd })
+		result.push({ css: sanitizeCss(css), ignoredRanges, tagStart, tagEnd, cssStart, cssEnd })
 	}
 
 	return result
