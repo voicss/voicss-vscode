@@ -1,6 +1,17 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.7.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.5...v0.7.0)
+
+### &emsp; 🧨 BREAKING CHANGES
+- **Rawstyle v0.6 adaptation**: the `gcss` API is no longer supported; global styles are now detected by context (expression vs assignment). [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/2c8e025)
+
+### &emsp; 🩹 Fixes
+- **CSS variable completion**: fixed duplicated `-` prefix when completing CSS variables. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/e485e20)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.5...v0.7.0) &ensp;•&ensp; Feb 28, 2026
+
+
 ## &ensp; [` 📦 v0.6.5  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.4...v0.6.5)
 
 ### &emsp; 🩹 Fixes
