@@ -27,8 +27,6 @@
 
 Once installed, the extension automatically activates when you open JS/TS(X) files. No configuration is required.
 
-All features work seamlessly inside `css` and `gcss` template literals.
-
 <br>
 
 <div align="center">
