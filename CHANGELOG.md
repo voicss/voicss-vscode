@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.7.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.7.0...v0.7.1)
+
+### &emsp; 📚 Documentation
+- **Updated README**: removed outdated `gcss` usage note. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/49f96fe)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.7.0...v0.7.1) &ensp;•&ensp; Feb 28, 2026
+
+
 ## &ensp; [` 📦 v0.7.0  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.6.5...v0.7.0)
 
 ### &emsp; 🧨 BREAKING CHANGES

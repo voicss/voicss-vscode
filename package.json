@@ -1,7 +1,7 @@
 {
 	"name": "rawstyle-vscode",
 	"displayName": "Rawstyle",
-	"version": "0.7.0",
+	"version": "0.7.1",
 	"description": "🧩 Native CSS features inside Rawstyle templates",
 	"author": "kh4f <kh4f.dev@gmail.com>",
 	"publisher": "Rawstyle",
