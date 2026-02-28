@@ -130,8 +130,10 @@ export function activate(context: ExtensionContext) {
 			const docValue = typeof item.documentation === 'string' ? item.documentation : item.documentation?.value
 			if (docValue) completion.documentation = new MarkdownString(docValue)
 
-			if (item.textEdit?.newText) completion.insertText = new SnippetString(item.textEdit.newText)
-			if (item.label === '!important') completion.insertText = 'important'
+			if (item.textEdit?.newText) {
+				item.textEdit.newText = item.textEdit.newText.replace(/^(!|-)/, '')
+				completion.insertText = new SnippetString(item.textEdit.newText)
+			}
 			completion.detail = item.detail
 			completion.tags = item.tags
 			completion.sortText = item.sortText
@@ -139,7 +141,7 @@ export function activate(context: ExtensionContext) {
 
 			return completion
 		}), true)
-	} }, ':', ';', ' ', '-', '#', '@', '$', '(', ')', '"', '\'', '/', '*', '+', ',', '|', '&', '^', '~', '?', '<', '>', '=')
+	} }, ':', ';', ' ', '#', '@', '$', '(', ')', '"', '\'', '/', '*', '+', ',', '|', '&', '^', '~', '?', '<', '>', '=')
 
 	const diagnosticCollection = languages.createDiagnosticCollection('rawstyle')
 
