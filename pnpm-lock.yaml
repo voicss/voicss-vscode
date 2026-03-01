@@ -15,7 +15,7 @@ importers:
         specifier: ^5.9.0
         version: 5.9.0(eslint@10.0.2(jiti@2.6.1))
       '@types/node':
-        specifier: ^25.3.1
+        specifier: ^25.3.2
         version: 25.3.2
       '@types/vscode':
         specifier: ^1.109.0
