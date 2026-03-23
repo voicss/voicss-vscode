@@ -56,7 +56,7 @@
 		"@types/vscode": "^1.110.0",
 		"@vscode/emmet-helper": "^2.11.0",
 		"@vscode/vsce": "^3.7.1",
-		"eslint": "^10.0.3",
+		"eslint": "^10.1.0",
 		"jiti": "^2.6.1",
 		"rawstyle": "^0.6.0",
 		"relion": "^0.39.2",
