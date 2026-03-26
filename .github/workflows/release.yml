@@ -16,7 +16,7 @@ jobs:
         with: { ref: 'main' } # attach HEAD to 'main'
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
         with: { version: latest }
 
       - name: Set up Node.js
