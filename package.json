@@ -52,7 +52,7 @@
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@stylistic/eslint-plugin": "^5.10.0",
-		"@types/node": "^25.5.0",
+		"@types/node": "^25.5.2",
 		"@types/vscode": "^1.110.0",
 		"@vscode/emmet-helper": "^2.11.0",
 		"@vscode/vsce": "^3.7.1",
