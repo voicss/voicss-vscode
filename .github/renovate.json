@@ -1,1 +1,4 @@
-{ "extends": ["github>kh4f/renovate-config"] }
+{
+	"extends": ["github>kh4f/renovate-config"],
+	"ignoreDeps": ["vscode"]
+}
