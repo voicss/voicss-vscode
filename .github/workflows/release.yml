@@ -4,51 +4,33 @@ on: { push: { tags: 'v[0-9]+.[0-9]+.[0-9]+*' } }
 
 jobs:
   release:
-    name: Release & Publish
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # for creating a GitHub release
+    permissions: { contents: write, id-token: write }
     env:
       TAG: ${{ github.ref_name }}
+      ZIP: ${{ github.event.repository.name }}-${{ github.ref_name }}.zip
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with: { ref: 'main' } # attach HEAD to 'main'
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v4
-        with: { version: latest }
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with: { node-version: latest, cache: pnpm }
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
 
       - name: Set env variables
         run: |
           PACKAGE=${GITHUB_REPOSITORY#*/}
           VERSION=${TAG#v}
-          ZIP=$PACKAGE-$TAG.zip
           VSIX=$PACKAGE-$VERSION.vsix
           echo -e "PACKAGE=$PACKAGE\nVERSION=$VERSION\nZIP=$ZIP\nVSIX=$VSIX" >> $GITHUB_ENV
 
-      - name: Install deps
-        run: pnpm install
+      - run: bun i
+      - run: bun lint
+      - run: bun typecheck
+      - run: bun build:prod
 
-      - name: Lint
-        run: pnpm lint
-
-      - name: Package VSIX
-        run: pnpm package
-
-      - name: Create release archive
-        run: zip -r $ZIP package.json LICENSE README.md dist syntaxes
-
-      - name: Publish to Visual Studio Marketplace
-        env:
+      - run: bun run package
+      - run: zip -r $ZIP package.json LICENSE README.md dist syntaxes
+      - env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: pnpm vsce publish --packagePath $VSIX
-
-      - name: Create GitHub release
-        env:
+        run: bun vsce publish --packagePath $VSIX
+      - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release create $TAG --title $TAG --draft $ZIP $VSIX
