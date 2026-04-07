@@ -4,7 +4,7 @@
 		"name": "Debug",
 		"type": "extensionHost",
 		"request": "launch",
-		"preLaunchTask": "pnpm: build",
+		"preLaunchTask": "build",
 		"outFiles": ["${workspaceFolder}/dist/**/*.js"]
 	}]
 }
