@@ -10,6 +10,5 @@ export default {
 	minify: isProd,
 	sourcemap: isProd ? false : 'inline',
 	fixedExtension: false,
-	external: ['vscode'],
-	inlineOnly: false,
+	deps: { onlyBundle: false, neverBundle: 'vscode' },
 } satisfies UserConfig
