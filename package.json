@@ -65,8 +65,8 @@
 		"eslint": "^10.2.0",
 		"jiti": "^2.6.1",
 		"rawstyle": "^0.6.0",
-		"tsdown": "^0.20.3",
-		"typescript": "^5.9.3",
+		"tsdown": "^0.21.7",
+		"typescript": "^6.0.2",
 		"typescript-eslint": "^8.58.0",
 		"vscode-css-languageservice": "^6.3.10",
 		"vscode-languageserver-textdocument": "^1.0.12"
