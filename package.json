@@ -50,6 +50,7 @@
 		"build:watch": "tsdown --watch",
 		"build:prod": "tsdown --prod",
 		"lint": "eslint",
+		"typecheck": "tsc",
 		"release": "bunx relion",
 		"package": "bun build:prod && vsce package",
 		"prepackage": "cp .github/icon.png icon.png",
