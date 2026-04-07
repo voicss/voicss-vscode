@@ -51,7 +51,7 @@
 		"build:prod": "tsdown --prod",
 		"lint": "eslint",
 		"release": "bunx relion",
-		"package": "bunx build:prod && vsce package",
+		"package": "bun build:prod && vsce package",
 		"prepackage": "cp .github/icon.png icon.png",
 		"postpackage": "rm icon.png"
 	},
