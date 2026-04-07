@@ -12,9 +12,13 @@
 	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
 	"categories": ["Programming Languages", "Formatters", "Snippets", "Linters"],
 	"icon": "icon.png",
-	"galleryBanner": { "color": "#F2F2F2", "theme": "light" },
-	"pnpm": { "onlyBuiltDependencies": ["esbuild", "@vscode/vsce-sign", "keytar"] },
-	"engines": { "vscode": ">=1.109.x" },
+	"galleryBanner": {
+		"color": "#F2F2F2",
+		"theme": "light"
+	},
+	"engines": {
+		"vscode": ">=1.109.x"
+	},
 	"files": ["package.json", "README.md", "LICENSE", "CHANGELOG.md", "dist", "syntaxes", "icon.png"],
 	"type": "module",
 	"main": "dist/index.js",
@@ -35,7 +39,9 @@
 				"scopeName": "rawstyle.css.injection",
 				"path": "syntaxes/injection.json",
 				"injectTo": ["source.js", "source.jsx", "source.ts", "source.tsx"],
-				"embeddedLanguages": { "meta.embedded.block.css": "css" }
+				"embeddedLanguages": {
+					"meta.embedded.block.css": "css"
+				}
 			}
 		]
 	},
@@ -44,24 +50,22 @@
 		"build:watch": "tsdown --watch",
 		"build:prod": "tsdown --prod",
 		"lint": "eslint",
-		"release": "relion",
-		"package": "pnpm build:prod && vsce package",
+		"release": "bunx relion",
+		"package": "bunx build:prod && vsce package",
 		"prepackage": "cp .github/icon.png icon.png",
 		"postpackage": "rm icon.png"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@stylistic/eslint-plugin": "^5.10.0",
-		"@types/node": "^25.5.2",
+		"@types/bun": "^1.3.11",
 		"@types/vscode": "^1.110.0",
 		"@vscode/emmet-helper": "^2.11.0",
 		"@vscode/vsce": "^3.7.1",
 		"eslint": "^10.2.0",
 		"jiti": "^2.6.1",
 		"rawstyle": "^0.6.0",
-		"relion": "^0.39.2",
 		"tsdown": "^0.20.3",
-		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.58.0",
 		"vscode-css-languageservice": "^6.3.10",
