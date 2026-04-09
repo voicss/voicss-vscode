@@ -28,9 +28,9 @@ jobs:
 
       - run: bun run package
       - run: zip -r $ZIP package.json LICENSE README.md dist syntaxes
-      - env:
+      - run: bun vsce publish --packagePath $VSIX
+        env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: bun vsce publish --packagePath $VSIX
-      - env:
+      - run: gh release create $TAG --title $TAG --draft $ZIP $VSIX
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create $TAG --title $TAG --draft $ZIP $VSIX
