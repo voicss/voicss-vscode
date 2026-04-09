@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.7.2  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.7.1...v0.7.2)
+
+### &emsp; 🩹 Fixes
+- **Improved CSS template matching**: updated `rawstyle` to `0.7.1` with a corrected `TEMPLATE_PATTERN` regex that no longer matches `.css` file extensions or nested `css` calls. [🡥](https://github.com/rawstylecss/rawstyle-vscode/commit/368620d)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.7.1...v0.7.2) &ensp;•&ensp; Apr 9, 2026
+
+
 ## &ensp; [` 📦 v0.7.1  `](https://github.com/rawstylecss/rawstyle-vscode/compare/v0.7.0...v0.7.1)
 
 ### &emsp; 📚 Documentation
