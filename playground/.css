@@ -6,7 +6,7 @@
 	width: if(style(--var: 1): 100%; else: 200px;);
 
 	#id {
-		background: #131313;
+		backgrond: #131313;
 		line-height: 0.7;
 		letter-spacing: -1rem;
 

@@ -4,36 +4,35 @@ import tseslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
 
 export default defineConfig([
-	globalIgnores(['dist', 'playground'], 'Global Ignores'),
+	globalIgnores(['dist', 'playground']),
 	{
 		name: 'Base Rules',
-		files: ['**/*.ts?(x)'],
+		files: ['**/*.ts'],
 		extends: [eslint.configs.recommended],
 	},
 	{
 		name: 'Type-Aware Rules',
-		files: ['**/*.ts?(x)'],
+		files: ['**/*.ts'],
 		extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
 		languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname } },
 		rules: {
-			'@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
+			'@typescript-eslint/no-confusing-void-expression': 'off',
 			'@typescript-eslint/restrict-template-expressions': 'off',
+			'@typescript-eslint/no-non-null-assertion': 'off',
 		},
 	},
 	{
 		name: 'Stylistic Rules',
-		files: ['**/*.ts?(x)'],
+		files: ['**/*.ts'],
 		extends: [stylistic.configs.recommended],
 		rules: {
+			'@stylistic/no-tabs': 'off',
 			'@stylistic/indent': ['error', 'tab'],
 			'@stylistic/indent-binary-ops': ['error', 'tab'],
-			'@stylistic/no-tabs': 'off',
-			'@stylistic/eol-last': ['error', 'never'],
+			'@stylistic/brace-style': ['error', '1tbs'],
 			'@stylistic/arrow-parens': ['error', 'as-needed'],
-			'@stylistic/max-statements-per-line': ['error', { max: 2 }],
-			'@stylistic/jsx-indent-props': ['error', 'tab'],
-			'@stylistic/jsx-one-expression-per-line': 'off',
-			'@stylistic/jsx-tag-spacing': ['error', { beforeSelfClosing: 'never' }],
+			'@stylistic/comma-dangle': ['error', 'only-multiline'],
+			'@stylistic/eol-last': ['error', 'never'],
 		},
 	},
 ])

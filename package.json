@@ -1,33 +1,23 @@
 {
-	"name": "rawstyle-vscode",
-	"displayName": "Rawstyle",
-	"version": "0.7.2",
-	"description": "🧩 Native CSS features inside Rawstyle templates",
+	"name": "voicss-vscode",
+	"displayName": "Voicss",
+	"version": "0.0.0",
+	"description": "💎 Native CSS Features for Voicss",
 	"author": "kh4f <kh4f.dev@gmail.com>",
-	"publisher": "Rawstyle",
+	"publisher": "Voicss",
 	"license": "MIT",
-	"repository": "https://github.com/rawstylecss/rawstyle-vscode",
-	"bugs": "https://github.com/rawstylecss/rawstyle-vscode/issues",
-	"homepage": "https://github.com/rawstylecss/rawstyle-vscode#readme",
-	"keywords": ["rawstyle", "rawstyle-vscode", "css-in-js"],
+	"repository": "https://github.com/voicss/voicss-vscode",
+	"bugs": "https://github.com/voicss/voicss-vscode/issues",
+	"homepage": "https://github.com/voicss/voicss-vscode#readme",
+	"keywords": ["voicss", "voicss-vscode", "css-in-ts"],
 	"categories": ["Programming Languages", "Formatters", "Snippets", "Linters"],
 	"icon": "icon.png",
-	"galleryBanner": {
-		"color": "#F2F2F2",
-		"theme": "light"
-	},
-	"engines": {
-		"vscode": ">=1.115.0"
-	},
+	"galleryBanner": { "color": "#221816", "theme": "light" },
+	"engines": { "vscode": ">=1.116.0" },
 	"files": ["package.json", "README.md", "LICENSE", "CHANGELOG.md", "dist", "syntaxes", "icon.png"],
 	"type": "module",
-	"main": "dist/index.js",
-	"activationEvents": [
-		"onLanguage:javascript",
-		"onLanguage:javascriptreact",
-		"onLanguage:typescript",
-		"onLanguage:typescriptreact"
-	],
+	"main": "dist/client.js",
+	"activationEvents": ["onLanguage:typescript", "onLanguage:typescriptreact"],
 	"contributes": {
 		"grammars": [
 			{
@@ -36,19 +26,17 @@
 				"path": "syntaxes/css.tmLanguage.json"
 			},
 			{
-				"scopeName": "rawstyle.css.injection",
+				"scopeName": "voicss.css.injection",
 				"path": "syntaxes/injection.json",
-				"injectTo": ["source.js", "source.jsx", "source.ts", "source.tsx"],
-				"embeddedLanguages": {
-					"meta.embedded.block.css": "css"
-				}
+				"injectTo": ["source.ts", "source.tsx"],
+				"embeddedLanguages": { "meta.embedded.block.css": "css" }
 			}
 		]
 	},
 	"scripts": {
 		"build": "tsdown",
-		"build:watch": "tsdown --watch",
-		"build:prod": "tsdown --prod",
+		"build:watch": "tsdown -w",
+		"build:prod": "tsdown -p",
 		"lint": "eslint",
 		"typecheck": "tsc",
 		"release": "bunx relion",
@@ -60,16 +48,17 @@
 		"@eslint/js": "^10.0.1",
 		"@stylistic/eslint-plugin": "^5.10.0",
 		"@types/bun": "^1.3.12",
-		"@types/vscode": "^1.115.0",
+		"@types/vscode": "^1.116.0",
 		"@vscode/emmet-helper": "^2.11.0",
-		"@vscode/vsce": "^3.7.1",
+		"@vscode/vsce": "^3.9.0",
 		"eslint": "^10.2.0",
 		"jiti": "^2.6.1",
-		"rawstyle": "^0.7.1",
-		"tsdown": "^0.21.7",
+		"tsdown": "^0.21.9",
 		"typescript": "^6.0.2",
-		"typescript-eslint": "^8.58.1",
+		"typescript-eslint": "^8.58.2",
 		"vscode-css-languageservice": "^6.3.10",
+		"vscode-languageclient": "^9.0.1",
+		"vscode-languageserver": "^9.0.1",
 		"vscode-languageserver-textdocument": "^1.0.12"
 	}
 }

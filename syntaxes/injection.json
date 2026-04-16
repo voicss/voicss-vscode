@@ -1,10 +1,10 @@
 {
-	"scopeName": "rawstyle.css.injection",
-	"injectionSelector": "L:source -string -comment",
+	"scopeName": "voicss.css.injection",
+	"injectionSelector": "L:source",
 	"patterns": [{
-		"begin": "\\bcss`",
-		"end": "`",
+		"begin": "(?<=^\\s*?void `css\\s)",
+		"end": "(?=`)",
 		"contentName": "meta.embedded.block.css",
-		"patterns": [{ "include": "source.css#rule-list-innards" }]
+		"patterns": [{ "include": "source.css" }]
 	}]
 }
