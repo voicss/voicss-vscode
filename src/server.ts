@@ -39,6 +39,7 @@ connection.onInitialize(() => ({
 	capabilities: {
 		textDocumentSync: TextDocumentSyncKind.Incremental,
 		hoverProvider: true,
+		renameProvider: true,
 		completionProvider: {
 			resolveProvider: false,
 			triggerCharacters: ['!', ':', ' ', '.', '#', '-', '@'],
@@ -115,6 +116,16 @@ connection.onDocumentHighlight(params => {
 	if (!snapshot || !containsOffset(snapshot.blocks, doc.offsetAt(params.position))) return
 
 	return cssLS.findDocumentHighlights(snapshot.document, params.position, snapshot.stylesheet)
+})
+
+connection.onRenameRequest(params => {
+	const doc = documents.get(params.textDocument.uri)
+	if (!doc) return
+
+	const snapshot = getSnapshot(doc)
+	if (!snapshot || !containsOffset(snapshot.blocks, doc.offsetAt(params.position))) return
+
+	return cssLS.doRename(snapshot.document, params.position, params.newName, snapshot.stylesheet)
 })
 
 documents.onDidOpen(e => refreshDiagnostics(e.document))
