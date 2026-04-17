@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.2.1  `](https://github.com/voicss/voicss-vscode/compare/v0.2.0...v0.2.1)
+
+### &emsp; 🩹 Fixes
+- **Legible banner text**: the marketplace gallery banner now correctly displays light text on its dark background. [🡥](https://github.com/voicss/voicss-vscode/commit/2227dd5)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/voicss/voicss-vscode/compare/v0.2.0...v0.2.1) &ensp;•&ensp; Apr 17, 2026
+
+
 ## &ensp; [` 📦 v0.2.0  `](https://github.com/voicss/voicss-vscode/compare/v0.1.1...v0.2.0)
 
 ### &emsp; 🎁 Features
