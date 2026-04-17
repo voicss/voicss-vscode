@@ -11,7 +11,7 @@ interface CssSnapshot {
 	version: number
 }
 
-const CSS_BLOCK = /^\s*?void `css\s(.*?)`/gs
+const CSS_BLOCK = /^\s*?void `css\s(.*?)`/msg
 const connection = createConnection(ProposedFeatures.all)
 const documents = new TextDocuments(TextDocument)
 const cssLS = getCSSLanguageService()

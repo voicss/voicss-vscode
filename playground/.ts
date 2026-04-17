@@ -1,3 +1,5 @@
+console.log(123)
+
 void `css
 :root {
 	font-size: 14px;
