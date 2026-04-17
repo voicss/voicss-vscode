@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.2.0  `](https://github.com/voicss/voicss-vscode/compare/v0.1.1...v0.2.0)
+
+### &emsp; 🎁 Features
+- **CSS symbol renaming**: added support for renaming CSS variables and other symbols inside Voicss template literals. [🡥](https://github.com/voicss/voicss-vscode/commit/875a1ad)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/voicss/voicss-vscode/compare/v0.1.1...v0.2.0) &ensp;•&ensp; Apr 17, 2026
+
+
 ## &ensp; [` 📦 v0.1.1  `](https://github.com/voicss/voicss-vscode/compare/v0.1.0...v0.1.1)
 
 ### &emsp; 🩹 Fixes
