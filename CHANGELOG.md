@@ -1,6 +1,14 @@
 # Changelog
 
 
+## &ensp; [` 📦 v0.1.1  `](https://github.com/voicss/voicss-vscode/compare/v0.1.0...v0.1.1)
+
+### &emsp; 🩹 Fixes
+- **CSS block detection**: fixed native CSS features so they now work for Voicss `void \`css\`` blocks even when they appear after other code in the file. [🡥](https://github.com/voicss/voicss-vscode/commit/fc008e6)
+
+##### &emsp;&emsp; [Full Changelog](https://github.com/voicss/voicss-vscode/compare/v0.1.0...v0.1.1) &ensp;•&ensp; Apr 17, 2026
+
+
 ## &ensp; [` 📦 v0.1.0  `](https://github.com/voicss/voicss-vscode/commits/v0.1.0)
 
 ### &emsp; 🧨 BREAKING CHANGES
