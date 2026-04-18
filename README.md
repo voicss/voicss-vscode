@@ -1,5 +1,5 @@
 # Voicss VS Code
-A VS Code extension that adds <b>native CSS features to Voicss template literals</b>.
+A VS Code extension that adds **native CSS features to Voicss template literals**
 
 ## 🔥 Features
 - **🌈 Syntax Highlighting:** extended CSS grammar with nesting support  
