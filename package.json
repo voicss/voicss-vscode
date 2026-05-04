@@ -51,7 +51,7 @@
 		"@types/vscode": "^1.118.0",
 		"@vscode/emmet-helper": "^2.11.0",
 		"@vscode/vsce": "^3.9.1",
-		"eslint": "^10.2.1",
+		"eslint": "^10.3.0",
 		"jiti": "^2.6.1",
 		"tsdown": "^0.21.10",
 		"typescript": "^6.0.3",
